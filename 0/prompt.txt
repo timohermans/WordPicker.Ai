@@ -1,0 +1,15 @@
+Explore the WordPicker codebase thoroughly. I need to understand:
+
+1. The directory structure of `src/WordPicker.Web/` - especially Pages, Models, and any existing Razor Pages
+2. The WordList and WordEntry models (in Models/)
+3. The existing word lists Index page (likely in Pages/WordLists/)
+4. The ApplicationDbContext and any existing migrations
+5. The existing specs in `openspec/specs/` if any exist
+6. Any existing routes or page handlers related to word lists
+
+Return:
+- The full file listing of src/WordPicker.Web/Pages/ (recursive)
+- The content of the WordList and WordEntry models
+- The content of the WordLists/Index.cshtml and Index.cshtml.cs
+- Any existing specs found in openspec/specs/
+- The ApplicationDbContext model configuration
