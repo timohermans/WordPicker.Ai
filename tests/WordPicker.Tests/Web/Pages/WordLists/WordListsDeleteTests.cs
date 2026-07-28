@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WordPicker.Web.Models;
 using WordPicker.Web.Pages.WordLists;
 
-namespace WordPicker.Tests;
+namespace WordPicker.Tests.Web.Pages.WordLists;
 
 [TestClass]
-public class WordListsDetailsTests : BaseTest
+public class WordListsDeleteTests : BaseTest
 {
     [TestMethod]
     [TestCategory(TestCategories.Unit)]
@@ -15,11 +15,11 @@ public class WordListsDetailsTests : BaseTest
     {
         // Arrange
         using var context = CreateContext();
-        var list = new WordList { Name = "Test List" };
+        var list = new WordList { Name = "List to Delete" };
         context.WordLists.Add(list);
         context.SaveChanges();
 
-        var pageModel = new DetailsModel(context);
+        var pageModel = new DeleteModel(context);
 
         // Act
         var result = await pageModel.OnGetAsync(list.Id);
@@ -27,21 +27,26 @@ public class WordListsDetailsTests : BaseTest
         // Assert
         Assert.IsInstanceOfType(result, typeof(PageResult));
         Assert.IsNotNull(pageModel.WordList);
-        Assert.AreEqual("Test List", pageModel.WordList.Name);
+        Assert.AreEqual("List to Delete", pageModel.WordList.Name);
     }
 
     [TestMethod]
     [TestCategory(TestCategories.Unit)]
-    public async Task OnGetAsync_WhenListDoesNotExist_ReturnsNotFound()
+    public async Task OnPostAsync_WhenListExists_RemovesList()
     {
         // Arrange
         using var context = CreateContext();
-        var pageModel = new DetailsModel(context);
+        var list = new WordList { Name = "List to Delete" };
+        context.WordLists.Add(list);
+        context.SaveChanges();
+
+        var pageModel = new DeleteModel(context);
 
         // Act
-        var result = await pageModel.OnGetAsync(999);
+        var result = await pageModel.OnPostAsync(list.Id);
 
         // Assert
-        Assert.IsInstanceOfType(result, typeof(NotFoundResult));
+        Assert.IsInstanceOfType(result, typeof(RedirectToPageResult));
+        Assert.AreEqual(0, context.WordLists.Count());
     }
 }

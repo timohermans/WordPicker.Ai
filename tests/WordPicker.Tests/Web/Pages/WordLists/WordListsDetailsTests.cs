@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WordPicker.Web.Models;
 using WordPicker.Web.Pages.WordLists;
 
-namespace WordPicker.Tests;
+namespace WordPicker.Tests.Web.Pages.WordLists;
 
 [TestClass]
-public class WordListsDeleteTests : BaseTest
+public class WordListsDetailsTests : BaseTest
 {
     [TestMethod]
     [TestCategory(TestCategories.Unit)]
@@ -15,11 +15,11 @@ public class WordListsDeleteTests : BaseTest
     {
         // Arrange
         using var context = CreateContext();
-        var list = new WordList { Name = "List to Delete" };
+        var list = new WordList { Name = "Test List" };
         context.WordLists.Add(list);
         context.SaveChanges();
 
-        var pageModel = new DeleteModel(context);
+        var pageModel = new DetailsModel(context);
 
         // Act
         var result = await pageModel.OnGetAsync(list.Id);
@@ -27,26 +27,21 @@ public class WordListsDeleteTests : BaseTest
         // Assert
         Assert.IsInstanceOfType(result, typeof(PageResult));
         Assert.IsNotNull(pageModel.WordList);
-        Assert.AreEqual("List to Delete", pageModel.WordList.Name);
+        Assert.AreEqual("Test List", pageModel.WordList.Name);
     }
 
     [TestMethod]
     [TestCategory(TestCategories.Unit)]
-    public async Task OnPostAsync_WhenListExists_RemovesList()
+    public async Task OnGetAsync_WhenListDoesNotExist_ReturnsNotFound()
     {
         // Arrange
         using var context = CreateContext();
-        var list = new WordList { Name = "List to Delete" };
-        context.WordLists.Add(list);
-        context.SaveChanges();
-
-        var pageModel = new DeleteModel(context);
+        var pageModel = new DetailsModel(context);
 
         // Act
-        var result = await pageModel.OnPostAsync(list.Id);
+        var result = await pageModel.OnGetAsync(999);
 
         // Assert
-        Assert.IsInstanceOfType(result, typeof(RedirectToPageResult));
-        Assert.AreEqual(0, context.WordLists.Count());
+        Assert.IsInstanceOfType(result, typeof(NotFoundResult));
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WordPicker.Web.Models;
 using WordPicker.Web.Pages.WordLists;
 
-namespace WordPicker.Tests;
+namespace WordPicker.Tests.Web.Pages.WordLists;
 
 [TestClass]
 public class WordListsIndexPostTests : BaseTest
