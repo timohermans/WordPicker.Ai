@@ -3,10 +3,9 @@
   "checkpoint_id": "01KYM2Y935NRNWAZR2641SPAMM",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 2,
+  "checkpoints_count": 1,
   "files_touched": [
-    "openspec/changes/initial-word-list-crud/design.md",
-    "openspec/changes/initial-word-list-crud/tasks.md"
+    "openspec/changes/initial-word-list-crud/design.md"
   ],
   "sessions": [
     {
@@ -18,10 +17,10 @@
     }
   ],
   "token_usage": {
-    "input_tokens": 3797,
+    "input_tokens": 601,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 233408,
-    "output_tokens": 892,
-    "api_call_count": 7
+    "cache_read_tokens": 71296,
+    "output_tokens": 378,
+    "api_call_count": 2
   }
 }

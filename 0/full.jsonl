@@ -19,17 +19,17 @@
     },
     "cost": 0,
     "tokens": {
-      "input": 35242,
-      "output": 7232,
-      "reasoning": 1442,
+      "input": 35843,
+      "output": 7610,
+      "reasoning": 1519,
       "cache": {
-        "read": 901568,
+        "read": 972864,
         "write": 0
       }
     },
     "time": {
       "created": 1785230948115,
-      "updated": 1785233064653
+      "updated": 1785233186787
     }
   },
   "messages": [
@@ -4776,6 +4776,237 @@
           "id": "prt_fa82ed33e001U4b6WuBrQZrdEi",
           "sessionID": "ses_057f188edffePwO8icLwR67OeV",
           "messageID": "msg_fa82ec2cc001zTYl1J5DsEPihC"
+        }
+      ]
+    },
+    {
+      "info": {
+        "role": "user",
+        "time": {
+          "created": 1785233179750
+        },
+        "agent": "build",
+        "model": {
+          "providerID": "opencode",
+          "modelID": "mimo-v2.5-free"
+        },
+        "summary": {
+          "diffs": [
+            {
+              "file": "openspec/changes/initial-word-list-crud/design.md",
+              "patch": "Index: openspec/changes/initial-word-list-crud/design.md\n===================================================================\n--- openspec/changes/initial-word-list-crud/design.md\t\n+++ openspec/changes/initial-word-list-crud/design.md\t\n@@ -1,87 +1,88 @@\n ## Context\n \n WordPicker is a new application requiring a web-based interface for managing word lists. This is the initial implementation establishing the foundational architecture and CRUD capabilities for word lists and their entries.\n \n ## Goals / Non-Goals\n \n **Goals:**\n - Establish ASP.NET Core MVC project structure with standard conventions\n - Implement responsive UI with Bootstrap for styling and Alpine.js for interactive components\n - Create persistent storage for word lists and words using PostgreSQL via Entity Framework Core\n - Provide intuitive CRUD operations for word lists and word entries\n \n **Non-Goals:**\n - User authentication/authorization (future enhancement)\n - Word definitions, translations, or linguistic features\n - Import/export functionality\n - API endpoints (MVC views only for now)\n \n ## Decisions\n \n ### Technology Stack\n \n | Decision | Choice | Rationale |\n |----------|--------|-----------|\n | Backend Framework | ASP.NET Core MVC | Mature, well-documented, strong EF Core integration |\n | Frontend Styling | Bootstrap 5 | Rapid responsive UI development, widely supported |\n | Client Interactivity | Alpine.js | Lightweight, jQuery-free interactivity for form enhancements |\n | ORM | Entity Framework Core | Native .NET integration, migration support |\n | Database | PostgreSQL | Robust, free, excellent EF Core support via Npgsql |\n | Project Structure | Standard MVC (Controllers/Views/Models) | Convention-based, IDE-friendly |\n \n ### Data Model\n \n ```\n WordList\n ├── Id (int, PK)\n ├── Name (string, required, max 200 chars)\n ├── CreatedAt (datetime)\n └── UpdatedAt (datetime)\n \n WordEntry\n ├── Id (int, PK)\n ├── WordListId (int, FK -> WordList)\n ├── Value (string, required, max 100 chars)\n └── CreatedAt (datetime)\n ```\n \n ### Architecture Decisions\n \n - **No Repository Pattern**: Use EF Core DbContext directly in controllers for simplicity in this initial phase; never ever use repository patterns\n - **Server-Side Rendering**: MVC views with Razor, Alpine.js for interactivity only (e.g., delete confirmations, form validation feedback)\n - **Migrations**: EF Core Code-First migrations for database schema management\n - **Projects**: No additional projects other than the MVC project should be made for functional code\n - **No npm**: All JavaScript and CSS dependencies (Bootstrap, Alpine.js, etc.) SHALL be loaded via CDN only; never use npm, LibMan, or other package managers for client-side assets\n+- **No Shared Logic**: Logic and queries SHALL NOT be shared across controllers via services, helpers, or shared utilities; each controller owns its logic entirely unless explicitly permitted\n \n ### Testing Decisions\n \n | Decision | Choice | Rationale |\n |----------|--------|-----------|\n | Test Framework | MSTest v4 | Modern, built-in .NET support, no extra dependencies |\n | Database | SQLite in-memory | Fast test isolation, no external dependencies, mirrors EF Core usage |\n | Assertions | MSTest built-in Assert class | No Fluent Assertions; keep assertion library minimal |\n | Naming Convention | `MethodName_When<scenario>_Then<result>` | Clear, consistent, describes intent |\n \n - **Every feature/fix MUST include unit tests** with SQLite in-memory database\n - **Arrange-Act-Assert** pattern for all test methods\n - Use `TestInitialize` for shared setup, `[TestCleanup]` for disposal\n \n ### Configuration Management\n \n | Decision | Choice | Rationale |\n |----------|--------|-----------|\n | Sensitive Config Location | `appsettings.Development.json` | Keeps secrets out of source control |\n | Template in Source | `appsettings.json` (empty values) | Documents required config keys without exposing values |\n | Source Control | `appsettings.Development.json` in `.gitignore` | Prevents accidental credential leaks |\n \n - **All environment-specific config** (connection strings, OAuth credentials, API keys) SHALL go in `appsettings.Development.json`\n - **`appsettings.json` SHALL mirror all keys** but keep values empty as placeholders\n - **`appsettings.Development.json` SHALL be in `.gitignore`** to prevent leaking secrets\n - **Never hardcode** configuration values in source code\n \n ## Risks / Trade-offs\n \n - **No authentication**: Lists are publicly accessible; acceptable for initial prototype but must be addressed before production use\n - **EF Core in controllers**: Tight coupling acceptable for initial simplicity; refactor to services layer if business logic grows\n - **Alpine.js learning curve**: Minimal; Alpine is intentionally simple and declarative\n - **PostgreSQL dependency**: Requires local PostgreSQL installation; could use SQLite for development if needed\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "modified"
+            }
+          ]
+        },
+        "id": "msg_fa8308466001LAVpPJTLle1ls3",
+        "sessionID": "ses_057f188edffePwO8icLwR67OeV"
+      },
+      "parts": [
+        {
+          "type": "text",
+          "text": "Another architectural decision is that logic or query should NEVER be shared among controllers. Only when I explicitly make the allowance.",
+          "id": "prt_fa8308466002tx7MXY89WcYDkS",
+          "sessionID": "ses_057f188edffePwO8icLwR67OeV",
+          "messageID": "msg_fa8308466001LAVpPJTLle1ls3"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_fa8308466001LAVpPJTLle1ls3",
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "/Users/timohermans/Dev/WordPicker",
+          "root": "/Users/timohermans/Dev/WordPicker"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 36149,
+          "input": 149,
+          "output": 356,
+          "reasoning": 60,
+          "cache": {
+            "write": 0,
+            "read": 35584
+          }
+        },
+        "modelID": "mimo-v2.5-free",
+        "providerID": "opencode",
+        "time": {
+          "created": 1785233179889,
+          "completed": 1785233186785
+        },
+        "finish": "tool-calls",
+        "id": "msg_fa83084f10013cLJCX6begKIV6",
+        "sessionID": "ses_057f188edffePwO8icLwR67OeV"
+      },
+      "parts": [
+        {
+          "snapshot": "1e168e0fdafa9c349783b62baf0b49b85888a008",
+          "type": "step-start",
+          "id": "prt_fa8308da20014K7SGGmlBcaeR2",
+          "sessionID": "ses_057f188edffePwO8icLwR67OeV",
+          "messageID": "msg_fa83084f10013cLJCX6begKIV6"
+        },
+        {
+          "type": "reasoning",
+          "text": "The user wants to add another architectural decision: logic or query should NEVER be shared among controllers, only when explicitly allowed. This means no shared services, repositories, or helper classes for controller logic - each controller should be self-contained.\n\nI need to add this to the design.md Architecture Decisions section.",
+          "time": {
+            "start": 1785233182117,
+            "end": 1785233182814
+          },
+          "id": "prt_fa8308da5001vup2SIiQonNpHx",
+          "sessionID": "ses_057f188edffePwO8icLwR67OeV",
+          "messageID": "msg_fa83084f10013cLJCX6begKIV6"
+        },
+        {
+          "type": "tool",
+          "tool": "edit",
+          "callID": "call_c45f9846b1604d90bd90fd96",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "/Users/timohermans/Dev/WordPicker/openspec/changes/initial-word-list-crud/design.md",
+              "newString": "- **No Repository Pattern**: Use EF Core DbContext directly in controllers for simplicity in this initial phase; never ever use repository patterns\n- **Server-Side Rendering**: MVC views with Razor, Alpine.js for interactivity only (e.g., delete confirmations, form validation feedback)\n- **Migrations**: EF Core Code-First migrations for database schema management\n- **Projects**: No additional projects other than the MVC project should be made for functional code\n- **No npm**: All JavaScript and CSS dependencies (Bootstrap, Alpine.js, etc.) SHALL be loaded via CDN only; never use npm, LibMan, or other package managers for client-side assets\n- **No Shared Logic**: Logic and queries SHALL NOT be shared across controllers via services, helpers, or shared utilities; each controller owns its logic entirely unless explicitly permitted",
+              "oldString": "- **No Repository Pattern**: Use EF Core DbContext directly in controllers for simplicity in this initial phase; never ever use repository patterns\n- **Server-Side Rendering**: MVC views with Razor, Alpine.js for interactivity only (e.g., delete confirmations, form validation feedback)\n- **Migrations**: EF Core Code-First migrations for database schema management\n- **Projects**: No additional projects other than the MVC project should be made for functional code\n- **No npm**: All JavaScript and CSS dependencies (Bootstrap, Alpine.js, etc.) SHALL be loaded via CDN only; never use npm, LibMan, or other package managers for client-side assets"
+            },
+            "output": "Edit applied successfully.",
+            "metadata": {
+              "diagnostics": {},
+              "diff": "Index: /Users/timohermans/Dev/WordPicker/openspec/changes/initial-word-list-crud/design.md\n===================================================================\n--- /Users/timohermans/Dev/WordPicker/openspec/changes/initial-word-list-crud/design.md\n+++ /Users/timohermans/Dev/WordPicker/openspec/changes/initial-word-list-crud/design.md\n@@ -51,8 +51,9 @@\n - **Server-Side Rendering**: MVC views with Razor, Alpine.js for interactivity only (e.g., delete confirmations, form validation feedback)\n - **Migrations**: EF Core Code-First migrations for database schema management\n - **Projects**: No additional projects other than the MVC project should be made for functional code\n - **No npm**: All JavaScript and CSS dependencies (Bootstrap, Alpine.js, etc.) SHALL be loaded via CDN only; never use npm, LibMan, or other package managers for client-side assets\n+- **No Shared Logic**: Logic and queries SHALL NOT be shared across controllers via services, helpers, or shared utilities; each controller owns its logic entirely unless explicitly permitted\n \n ### Testing Decisions\n \n | Decision | Choice | Rationale |\n",
+              "filediff": {
+                "file": "/Users/timohermans/Dev/WordPicker/openspec/changes/initial-word-list-crud/design.md",
+                "patch": "Index: /Users/timohermans/Dev/WordPicker/openspec/changes/initial-word-list-crud/design.md\n===================================================================\n--- /Users/timohermans/Dev/WordPicker/openspec/changes/initial-word-list-crud/design.md\n+++ /Users/timohermans/Dev/WordPicker/openspec/changes/initial-word-list-crud/design.md\n@@ -51,8 +51,9 @@\n - **Server-Side Rendering**: MVC views with Razor, Alpine.js for interactivity only (e.g., delete confirmations, form validation feedback)\n - **Migrations**: EF Core Code-First migrations for database schema management\n - **Projects**: No additional projects other than the MVC project should be made for functional code\n - **No npm**: All JavaScript and CSS dependencies (Bootstrap, Alpine.js, etc.) SHALL be loaded via CDN only; never use npm, LibMan, or other package managers for client-side assets\n+- **No Shared Logic**: Logic and queries SHALL NOT be shared across controllers via services, helpers, or shared utilities; each controller owns its logic entirely unless explicitly permitted\n \n ### Testing Decisions\n \n | Decision | Choice | Rationale |\n",
+                "additions": 1,
+                "deletions": 0
+              },
+              "truncated": false
+            },
+            "title": "openspec/changes/initial-word-list-crud/design.md",
+            "time": {
+              "start": 1785233186628,
+              "end": 1785233186630
+            }
+          },
+          "id": "prt_fa83090600012YKGaV14ln4mBU",
+          "sessionID": "ses_057f188edffePwO8icLwR67OeV",
+          "messageID": "msg_fa83084f10013cLJCX6begKIV6"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "ede1cc23f2e97a435c15bd3e153ae0a884078ac3",
+          "type": "step-finish",
+          "tokens": {
+            "total": 36149,
+            "input": 149,
+            "output": 356,
+            "reasoning": 60,
+            "cache": {
+              "write": 0,
+              "read": 35584
+            }
+          },
+          "cost": 0,
+          "id": "prt_fa8309fb2001zn4o69730qd66w",
+          "sessionID": "ses_057f188edffePwO8icLwR67OeV",
+          "messageID": "msg_fa83084f10013cLJCX6begKIV6"
+        },
+        {
+          "type": "patch",
+          "hash": "1e168e0fdafa9c349783b62baf0b49b85888a008",
+          "files": [
+            "/Users/timohermans/Dev/WordPicker/openspec/changes/initial-word-list-crud/design.md"
+          ],
+          "id": "prt_fa8309fe0001Saxu1xeMhzhOVA",
+          "sessionID": "ses_057f188edffePwO8icLwR67OeV",
+          "messageID": "msg_fa83084f10013cLJCX6begKIV6"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_fa8308466001LAVpPJTLle1ls3",
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "/Users/timohermans/Dev/WordPicker",
+          "root": "/Users/timohermans/Dev/WordPicker"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 36203,
+          "input": 452,
+          "output": 22,
+          "reasoning": 17,
+          "cache": {
+            "write": 0,
+            "read": 35712
+          }
+        },
+        "modelID": "mimo-v2.5-free",
+        "providerID": "opencode",
+        "time": {
+          "created": 1785233186787,
+          "completed": 1785233199074
+        },
+        "finish": "stop",
+        "id": "msg_fa8309fe30016MLEPZFe6A5t1o",
+        "sessionID": "ses_057f188edffePwO8icLwR67OeV"
+      },
+      "parts": [
+        {
+          "snapshot": "ede1cc23f2e97a435c15bd3e153ae0a884078ac3",
+          "type": "step-start",
+          "id": "prt_fa830ce05001foWiy9IYJJ1US1",
+          "sessionID": "ses_057f188edffePwO8icLwR67OeV",
+          "messageID": "msg_fa8309fe30016MLEPZFe6A5t1o"
+        },
+        {
+          "type": "reasoning",
+          "text": "Done. Added the \"No Shared Logic\" decision to the Architecture Decisions section.",
+          "time": {
+            "start": 1785233198602,
+            "end": 1785233198703
+          },
+          "id": "prt_fa830ce0a001XGt0P93mihZ7gW",
+          "sessionID": "ses_057f188edffePwO8icLwR67OeV",
+          "messageID": "msg_fa8309fe30016MLEPZFe6A5t1o"
+        },
+        {
+          "type": "text",
+          "text": "Added to design.md Architecture Decisions: no shared logic/services/helpers across controllers unless explicitly permitted.",
+          "time": {
+            "start": 1785233198704,
+            "end": 1785233198983
+          },
+          "id": "prt_fa830ce70001qSVu5mxOQGhbgo",
+          "sessionID": "ses_057f188edffePwO8icLwR67OeV",
+          "messageID": "msg_fa8309fe30016MLEPZFe6A5t1o"
+        },
+        {
+          "reason": "stop",
+          "snapshot": "ede1cc23f2e97a435c15bd3e153ae0a884078ac3",
+          "type": "step-finish",
+          "tokens": {
+            "total": 36203,
+            "input": 452,
+            "output": 22,
+            "reasoning": 17,
+            "cache": {
+              "write": 0,
+              "read": 35712
+            }
+          },
+          "cost": 0,
+          "id": "prt_fa830cfba001q5L2h0qkZ3M6Vt",
+          "sessionID": "ses_057f188edffePwO8icLwR67OeV",
+          "messageID": "msg_fa8309fe30016MLEPZFe6A5t1o"
         }
       ]
     }
