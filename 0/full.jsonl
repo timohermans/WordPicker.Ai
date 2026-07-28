@@ -17,19 +17,19 @@
       "deletions": 0,
       "files": 0
     },
-    "cost": 0.024930953599999996,
+    "cost": 0.026290168799999996,
     "tokens": {
-      "input": 51016,
-      "output": 16827,
-      "reasoning": 8907,
+      "input": 52223,
+      "output": 17369,
+      "reasoning": 9028,
       "cache": {
-        "read": 3779712,
+        "read": 4138496,
         "write": 0
       }
     },
     "time": {
       "created": 1785241677980,
-      "updated": 1785242986082
+      "updated": 1785243016021
     }
   },
   "messages": [
@@ -11079,7 +11079,78 @@
           "modelID": "deepseek-v4-flash"
         },
         "summary": {
-          "diffs": []
+          "diffs": [
+            {
+              "file": "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/.openspec.yaml",
+              "patch": "Index: openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/.openspec.yaml\n===================================================================\n--- openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/.openspec.yaml\t\n+++ openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/.openspec.yaml\t\n@@ -0,0 +1,2 @@\n+schema: spec-driven\n+created: 2026-07-28\n",
+              "additions": 2,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/design.md",
+              "patch": "Index: openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/design.md\n===================================================================\n--- openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/design.md\t\n+++ openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/design.md\t\n@@ -0,0 +1,32 @@\n+## Context\n+\n+WordPicker is a Razor Pages app with a standard scaffolded home page that serves no purpose. The functional entry point is the word list overview at `/WordLists/Index`. The layout uses the classic ASP.NET Core sticky footer pattern (margin-bottom on body, absolute positioning) but the footer CSS rule was never added, so the footer floats up on short pages.\n+\n+## Goals / Non-Goals\n+\n+**Goals:**\n+- Make `/` redirect to the word list overview instead of showing a blank welcome page\n+- Keep `WordLists/Index` untouched — no code duplication, no moved files\n+- Fix the footer to stick to the bottom of the viewport regardless of content height\n+\n+**Non-Goals:**\n+- No functional changes to word list management or word entry management\n+- No file deletion or file movement\n+- No spec changes required\n+\n+## Decisions\n+\n+1. **Root Index redirects to WordLists/Index**\n+   - Rationale: Simplest possible change. `Index.cshtml.cs` returns `RedirectToPage(\"/WordLists/Index\")`. No files moved, no routes broken, no tests need updating.\n+   - Alternative considered: Move content to root (rejected — user wants to keep WordLists/Index in place).\n+\n+2. **Bootstrap utility classes for sticky footer**\n+   - `d-flex flex-column min-vh-100` on `<body>`, `d-flex flex-column flex-grow-1` on `.container` (the flex direct child of body), `d-flex align-items-center` on footer\n+   - `flex-grow-1` must be on the direct child of the flex container (`.container` div, not `<main>` inside it)\n+   - Footer gets `min-height: 60px` via `.footer` class in `site.css` (Bootstrap has no height utility for 60px)\n+   - Rationale: Native Bootstrap 5 utilities for the layout, one small CSS rule for the footer height.\n+\n+## Risks / Trade-offs\n+\n+- **Extra redirect** — Visiting `/` adds a 302 redirect before reaching the content. Negligible for this app's scale.\n+- **Nav link label** — The navbar currently has \"Home\" and \"Word Lists\" pointing to the same place after the change. Cleanest fix is to just keep \"Word Lists\" and remove \"Home\".\n",
+              "additions": 32,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/proposal.md",
+              "patch": "Index: openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/proposal.md\n===================================================================\n--- openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/proposal.md\t\n+++ openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/proposal.md\t\n@@ -0,0 +1,26 @@\n+## Why\n+\n+The home page at `/` shows a generic \"Welcome\" page with no functional value. Users immediately navigate to `/WordLists/Index` to get started. Making the word list overview the root page eliminates a useless redirect and puts users straight into the app. Separately, the footer floats up on short pages instead of sticking to the bottom.\n+\n+## What Changes\n+\n+- Root `Index.cshtml` redirects to `/WordLists/Index` — the word list overview remains the functional entry point with no code duplication\n+- Update the navbar \"Home\" link to point to `/WordLists/Index` (removes \"Home\" concept, keeps just \"Word Lists\")\n+- Fix the footer to always stay at the bottom using Bootstrap utility classes\n+\n+## Capabilities\n+\n+### New Capabilities\n+\n+None — no new functional capabilities are introduced.\n+\n+### Modified Capabilities\n+\n+None — the route change is an implementation detail. The requirements for viewing, creating, and deleting word lists remain the same.\n+\n+## Impact\n+\n+- `src/WordPicker.Web/Pages/Index.cshtml` — changed to redirect to `/WordLists/Index`\n+- `src/WordPicker.Web/Pages/Index.cshtml.cs` — changed to return `RedirectToPage(\"/WordLists/Index\")`\n+- `src/WordPicker.Web/Pages/Shared/_Layout.cshtml` — nav link + footer classes\n+- `src/WordPicker.Web/wwwroot/css/site.css` — remove legacy sticky footer CSS\n",
+              "additions": 26,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/specs/no-spec-changes/spec.md",
+              "patch": "Index: openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/specs/no-spec-changes/spec.md\n===================================================================\n--- openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/specs/no-spec-changes/spec.md\t\n+++ openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/specs/no-spec-changes/spec.md\t\n@@ -0,0 +1,3 @@\n+# no-spec-changes\n+\n+This change introduces no new capabilities and modifies no existing requirements. All changes are implementation-only (route moves, layout fix).\n",
+              "additions": 3,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/tasks.md",
+              "patch": "Index: openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/tasks.md\n===================================================================\n--- openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/tasks.md\t\n+++ openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/tasks.md\t\n@@ -0,0 +1,21 @@\n+## 1. Update root Index to redirect\n+\n+- [x] 1.1 Change `Index.cshtml.cs` to redirect: replace `OnGet()` body with `return RedirectToPage(\"/WordLists/Index\");` and change return type to `IActionResult`\n+- [x] 1.2 Update `Index.cshtml` to just show a redirect message or leave minimal shell (can be a simple page with no visible content since it redirects immediately)\n+- [x] 1.3 Create `tests/WordPicker.Tests/Web/Pages/HomePageRedirectTests.cs` with a unit test that instantiates `IndexModel`, calls `OnGet()`, and asserts the result is a `RedirectToPageResult` with `PageName` equal to `/WordLists/Index`\n+\n+## 2. Update layout\n+\n+- [x] 2.1 In `_Layout.cshtml`, remove the \"Home\" nav item (since it would point to the same place as \"Word Lists\")\n+- [x] 2.2 Add `d-flex flex-column min-vh-100` to `<body>`, `d-flex flex-column flex-grow-1` to the `.container` div (direct child of body), `d-flex align-items-center` to `<footer>`\n+- [x] 2.3 Drop `flex-grow-1` from `<main>` — it's inside `.container`, not a direct flex child\n+\n+## 3. Clean up CSS\n+\n+- [x] 3.1 In `site.css`, remove the old sticky footer rules (`html { position: relative; min-height: 100%; }` and `body { margin-bottom: 60px; }`)\n+- [x] 3.2 Add `.footer { min-height: 60px; }` to `site.css`\n+\n+## 4. Verify\n+\n+- [x] 4.1 Run `dotnet build` to ensure no compilation errors\n+- [x] 4.2 Run tests to confirm all pass\n",
+              "additions": 21,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "openspec/changes/promote-word-lists-to-main-page/.openspec.yaml",
+              "patch": "Index: openspec/changes/promote-word-lists-to-main-page/.openspec.yaml\n===================================================================\n--- openspec/changes/promote-word-lists-to-main-page/.openspec.yaml\t\n+++ openspec/changes/promote-word-lists-to-main-page/.openspec.yaml\t\n@@ -1,2 +0,0 @@\n-schema: spec-driven\n-created: 2026-07-28\n",
+              "additions": 0,
+              "deletions": 2,
+              "status": "deleted"
+            },
+            {
+              "file": "openspec/changes/promote-word-lists-to-main-page/design.md",
+              "patch": "Index: openspec/changes/promote-word-lists-to-main-page/design.md\n===================================================================\n--- openspec/changes/promote-word-lists-to-main-page/design.md\t\n+++ openspec/changes/promote-word-lists-to-main-page/design.md\t\n@@ -1,32 +0,0 @@\n-## Context\n-\n-WordPicker is a Razor Pages app with a standard scaffolded home page that serves no purpose. The functional entry point is the word list overview at `/WordLists/Index`. The layout uses the classic ASP.NET Core sticky footer pattern (margin-bottom on body, absolute positioning) but the footer CSS rule was never added, so the footer floats up on short pages.\n-\n-## Goals / Non-Goals\n-\n-**Goals:**\n-- Make `/` redirect to the word list overview instead of showing a blank welcome page\n-- Keep `WordLists/Index` untouched — no code duplication, no moved files\n-- Fix the footer to stick to the bottom of the viewport regardless of content height\n-\n-**Non-Goals:**\n-- No functional changes to word list management or word entry management\n-- No file deletion or file movement\n-- No spec changes required\n-\n-## Decisions\n-\n-1. **Root Index redirects to WordLists/Index**\n-   - Rationale: Simplest possible change. `Index.cshtml.cs` returns `RedirectToPage(\"/WordLists/Index\")`. No files moved, no routes broken, no tests need updating.\n-   - Alternative considered: Move content to root (rejected — user wants to keep WordLists/Index in place).\n-\n-2. **Bootstrap utility classes for sticky footer**\n-   - `d-flex flex-column min-vh-100` on `<body>`, `d-flex flex-column flex-grow-1` on `.container` (the flex direct child of body), `d-flex align-items-center` on footer\n-   - `flex-grow-1` must be on the direct child of the flex container (`.container` div, not `<main>` inside it)\n-   - Footer gets `min-height: 60px` via `.footer` class in `site.css` (Bootstrap has no height utility for 60px)\n-   - Rationale: Native Bootstrap 5 utilities for the layout, one small CSS rule for the footer height.\n-\n-## Risks / Trade-offs\n-\n-- **Extra redirect** — Visiting `/` adds a 302 redirect before reaching the content. Negligible for this app's scale.\n-- **Nav link label** — The navbar currently has \"Home\" and \"Word Lists\" pointing to the same place after the change. Cleanest fix is to just keep \"Word Lists\" and remove \"Home\".\n",
+              "additions": 0,
+              "deletions": 32,
+              "status": "deleted"
+            },
+            {
+              "file": "openspec/changes/promote-word-lists-to-main-page/proposal.md",
+              "patch": "Index: openspec/changes/promote-word-lists-to-main-page/proposal.md\n===================================================================\n--- openspec/changes/promote-word-lists-to-main-page/proposal.md\t\n+++ openspec/changes/promote-word-lists-to-main-page/proposal.md\t\n@@ -1,26 +0,0 @@\n-## Why\n-\n-The home page at `/` shows a generic \"Welcome\" page with no functional value. Users immediately navigate to `/WordLists/Index` to get started. Making the word list overview the root page eliminates a useless redirect and puts users straight into the app. Separately, the footer floats up on short pages instead of sticking to the bottom.\n-\n-## What Changes\n-\n-- Root `Index.cshtml` redirects to `/WordLists/Index` — the word list overview remains the functional entry point with no code duplication\n-- Update the navbar \"Home\" link to point to `/WordLists/Index` (removes \"Home\" concept, keeps just \"Word Lists\")\n-- Fix the footer to always stay at the bottom using Bootstrap utility classes\n-\n-## Capabilities\n-\n-### New Capabilities\n-\n-None — no new functional capabilities are introduced.\n-\n-### Modified Capabilities\n-\n-None — the route change is an implementation detail. The requirements for viewing, creating, and deleting word lists remain the same.\n-\n-## Impact\n-\n-- `src/WordPicker.Web/Pages/Index.cshtml` — changed to redirect to `/WordLists/Index`\n-- `src/WordPicker.Web/Pages/Index.cshtml.cs` — changed to return `RedirectToPage(\"/WordLists/Index\")`\n-- `src/WordPicker.Web/Pages/Shared/_Layout.cshtml` — nav link + footer classes\n-- `src/WordPicker.Web/wwwroot/css/site.css` — remove legacy sticky footer CSS\n",
+              "additions": 0,
+              "deletions": 26,
+              "status": "deleted"
+            },
+            {
+              "file": "openspec/changes/promote-word-lists-to-main-page/specs/no-spec-changes/spec.md",
+              "patch": "Index: openspec/changes/promote-word-lists-to-main-page/specs/no-spec-changes/spec.md\n===================================================================\n--- openspec/changes/promote-word-lists-to-main-page/specs/no-spec-changes/spec.md\t\n+++ openspec/changes/promote-word-lists-to-main-page/specs/no-spec-changes/spec.md\t\n@@ -1,3 +0,0 @@\n-# no-spec-changes\n-\n-This change introduces no new capabilities and modifies no existing requirements. All changes are implementation-only (route moves, layout fix).\n",
+              "additions": 0,
+              "deletions": 3,
+              "status": "deleted"
+            },
+            {
+              "file": "openspec/changes/promote-word-lists-to-main-page/tasks.md",
+              "patch": "Index: openspec/changes/promote-word-lists-to-main-page/tasks.md\n===================================================================\n--- openspec/changes/promote-word-lists-to-main-page/tasks.md\t\n+++ openspec/changes/promote-word-lists-to-main-page/tasks.md\t\n@@ -1,21 +0,0 @@\n-## 1. Update root Index to redirect\n-\n-- [x] 1.1 Change `Index.cshtml.cs` to redirect: replace `OnGet()` body with `return RedirectToPage(\"/WordLists/Index\");` and change return type to `IActionResult`\n-- [x] 1.2 Update `Index.cshtml` to just show a redirect message or leave minimal shell (can be a simple page with no visible content since it redirects immediately)\n-- [x] 1.3 Create `tests/WordPicker.Tests/Web/Pages/HomePageRedirectTests.cs` with a unit test that instantiates `IndexModel`, calls `OnGet()`, and asserts the result is a `RedirectToPageResult` with `PageName` equal to `/WordLists/Index`\n-\n-## 2. Update layout\n-\n-- [x] 2.1 In `_Layout.cshtml`, remove the \"Home\" nav item (since it would point to the same place as \"Word Lists\")\n-- [x] 2.2 Add `d-flex flex-column min-vh-100` to `<body>`, `d-flex flex-column flex-grow-1` to the `.container` div (direct child of body), `d-flex align-items-center` to `<footer>`\n-- [x] 2.3 Drop `flex-grow-1` from `<main>` — it's inside `.container`, not a direct flex child\n-\n-## 3. Clean up CSS\n-\n-- [x] 3.1 In `site.css`, remove the old sticky footer rules (`html { position: relative; min-height: 100%; }` and `body { margin-bottom: 60px; }`)\n-- [x] 3.2 Add `.footer { min-height: 60px; }` to `site.css`\n-\n-## 4. Verify\n-\n-- [x] 4.1 Run `dotnet build` to ensure no compilation errors\n-- [x] 4.2 Run tests to confirm all pass\n",
+              "additions": 0,
+              "deletions": 21,
+              "status": "deleted"
+            }
+          ]
         },
         "id": "msg_fa8c6174a001vVOjcKvcc9zzmB",
         "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP"
@@ -11227,21 +11298,24 @@
           "cwd": "/Users/timohermans/Dev/WordPicker",
           "root": "/Users/timohermans/Dev/WordPicker"
         },
-        "cost": 0,
+        "cost": 0.0003330936,
         "tokens": {
-          "input": 0,
-          "output": 0,
-          "reasoning": 0,
+          "total": 71599,
+          "input": 413,
+          "output": 241,
+          "reasoning": 33,
           "cache": {
-            "read": 0,
-            "write": 0
+            "write": 0,
+            "read": 70912
           }
         },
         "modelID": "deepseek-v4-flash",
         "providerID": "opencode-go",
         "time": {
-          "created": 1785242986082
+          "created": 1785242986082,
+          "completed": 1785243005024
         },
+        "finish": "tool-calls",
         "id": "msg_fa8c626620016zzujgE9AbDBWL",
         "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP"
       },
@@ -11269,21 +11343,432 @@
           "tool": "bash",
           "callID": "call_00_IRdaXDxJuSPbKjTSy29K6695",
           "state": {
-            "metadata": {
-              "output": "warning: in the working copy of 'src/WordPicker.Web/Pages/Index.cshtml', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'src/WordPicker.Web/Pages/Index.cshtml.cs', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'src/WordPicker.Web/wwwroot/css/site.css', CRLF will be replaced by LF the next time Git touches it\n"
-            },
-            "status": "running",
+            "status": "completed",
             "input": {
               "command": "git add src/WordPicker.Web/Pages/Index.cshtml src/WordPicker.Web/Pages/Index.cshtml.cs src/WordPicker.Web/Pages/Shared/_Layout.cshtml src/WordPicker.Web/wwwroot/css/site.css openspec/changes/promote-word-lists-to-main-page/ tests/WordPicker.Tests/Web/Pages/HomePageRedirectTests.cs && git commit -m \"feat: promote word lists to main page, fix sticky footer\n\n- Root Index.cshtml now redirects to /WordLists/Index\n- Removed old welcome page content\n- Added unit test for redirect (HomePageRedirectTests)\n- Fixed sticky footer using Bootstrap flex utilities\n- Added .footer { min-height: 60px; } to site.css\n- Navbar now shows only 'Word Lists' link\"",
               "workdir": "/Users/timohermans/Dev/WordPicker"
             },
+            "output": "warning: in the working copy of 'src/WordPicker.Web/Pages/Index.cshtml', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'src/WordPicker.Web/Pages/Index.cshtml.cs', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'src/WordPicker.Web/wwwroot/css/site.css', CRLF will be replaced by LF the next time Git touches it\n[main c06e8b0] feat: promote word lists to main page, fix sticky footer\n 10 files changed, 116 insertions(+), 22 deletions(-)\n create mode 100644 openspec/changes/promote-word-lists-to-main-page/.openspec.yaml\n create mode 100644 openspec/changes/promote-word-lists-to-main-page/design.md\n create mode 100644 openspec/changes/promote-word-lists-to-main-page/proposal.md\n create mode 100644 openspec/changes/promote-word-lists-to-main-page/specs/no-spec-changes/spec.md\n create mode 100644 openspec/changes/promote-word-lists-to-main-page/tasks.md\n create mode 100644 tests/WordPicker.Tests/Web/Pages/HomePageRedirectTests.cs\n",
+            "metadata": {
+              "output": "warning: in the working copy of 'src/WordPicker.Web/Pages/Index.cshtml', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'src/WordPicker.Web/Pages/Index.cshtml.cs', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'src/WordPicker.Web/wwwroot/css/site.css', CRLF will be replaced by LF the next time Git touches it\n[main c06e8b0] feat: promote word lists to main page, fix sticky footer\n 10 files changed, 116 insertions(+), 22 deletions(-)\n create mode 100644 openspec/changes/promote-word-lists-to-main-page/.openspec.yaml\n create mode 100644 openspec/changes/promote-word-lists-to-main-page/design.md\n create mode 100644 openspec/changes/promote-word-lists-to-main-page/proposal.md\n create mode 100644 openspec/changes/promote-word-lists-to-main-page/specs/no-spec-changes/spec.md\n create mode 100644 openspec/changes/promote-word-lists-to-main-page/tasks.md\n create mode 100644 tests/WordPicker.Tests/Web/Pages/HomePageRedirectTests.cs\n",
+              "exit": 0,
+              "truncated": false
+            },
+            "title": "git add src/WordPicker.Web/Pages/Index.cshtml src/WordPicker.Web/Pages/Index.cshtml.cs src/WordPicker.Web/Pages/Shared/_Layout.cshtml src/WordPicker.Web/wwwroot/css/site.css openspec/changes/promote-word-lists-to-main-page/ tests/WordPicker.Tests/Web/Pages/HomePageRedirectTests.cs && git commit -m \"feat: promote word lists to main page, fix sticky footer\n\n- Root Index.cshtml now redirects to /WordLists/Index\n- Removed old welcome page content\n- Added unit test for redirect (HomePageRedirectTests)\n- Fixed sticky footer using Bootstrap flex utilities\n- Added .footer { min-height: 60px; } to site.css\n- Navbar now shows only 'Word Lists' link\"",
             "time": {
-              "start": 1785242990780
+              "start": 1785243004948,
+              "end": 1785243004950
             }
           },
           "id": "prt_fa8c632780019W9VhS4bjmQ7kp",
           "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
           "messageID": "msg_fa8c626620016zzujgE9AbDBWL"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "cff9888e9f166b137a8aedf978219b2021573ea4",
+          "type": "step-finish",
+          "tokens": {
+            "total": 71599,
+            "input": 413,
+            "output": 241,
+            "reasoning": 33,
+            "cache": {
+              "write": 0,
+              "read": 70912
+            }
+          },
+          "cost": 0.0003330936,
+          "id": "prt_fa8c6703c0016DKSahVVCgVstH",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c626620016zzujgE9AbDBWL"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_fa8c6174a001vVOjcKvcc9zzmB",
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "/Users/timohermans/Dev/WordPicker",
+          "root": "/Users/timohermans/Dev/WordPicker"
+        },
+        "cost": 0.0002732856,
+        "tokens": {
+          "total": 71983,
+          "input": 341,
+          "output": 80,
+          "reasoning": 10,
+          "cache": {
+            "write": 0,
+            "read": 71552
+          }
+        },
+        "modelID": "deepseek-v4-flash",
+        "providerID": "opencode-go",
+        "time": {
+          "created": 1785243005032,
+          "completed": 1785243008757
+        },
+        "finish": "tool-calls",
+        "id": "msg_fa8c670680011uHC36TfqouyNk",
+        "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP"
+      },
+      "parts": [
+        {
+          "snapshot": "cff9888e9f166b137a8aedf978219b2021573ea4",
+          "type": "step-start",
+          "id": "prt_fa8c67a0f001Lrv9W5MiFw6onE",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c670680011uHC36TfqouyNk"
+        },
+        {
+          "type": "reasoning",
+          "text": "Commit succeeded. Now let me archive the change.",
+          "time": {
+            "start": 1785243007812,
+            "end": 1785243008060
+          },
+          "id": "prt_fa8c67b44001nQpIYIj4Ror7wS",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c670680011uHC36TfqouyNk"
+        },
+        {
+          "type": "tool",
+          "tool": "bash",
+          "callID": "call_00_y8kD5lWWiqg9Wwp8uyLn3476",
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "openspec archive change promote-word-lists-to-main-page",
+              "workdir": "/Users/timohermans/Dev/WordPicker"
+            },
+            "output": "error: too many arguments for 'archive'. Expected 1 argument but got 2.\n",
+            "metadata": {
+              "output": "error: too many arguments for 'archive'. Expected 1 argument but got 2.\n",
+              "exit": 1,
+              "truncated": false
+            },
+            "title": "openspec archive change promote-word-lists-to-main-page",
+            "time": {
+              "start": 1785243008682,
+              "end": 1785243008684
+            }
+          },
+          "id": "prt_fa8c67c3e00186QYBeAqRungUr",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c670680011uHC36TfqouyNk"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "cff9888e9f166b137a8aedf978219b2021573ea4",
+          "type": "step-finish",
+          "tokens": {
+            "total": 71983,
+            "input": 341,
+            "output": 80,
+            "reasoning": 10,
+            "cache": {
+              "write": 0,
+              "read": 71552
+            }
+          },
+          "cost": 0.0002732856,
+          "id": "prt_fa8c67ed2001fJsRGes9zsImBt",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c670680011uHC36TfqouyNk"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_fa8c6174a001vVOjcKvcc9zzmB",
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "/Users/timohermans/Dev/WordPicker",
+          "root": "/Users/timohermans/Dev/WordPicker"
+        },
+        "cost": 0.0002348808,
+        "tokens": {
+          "total": 72094,
+          "input": 77,
+          "output": 74,
+          "reasoning": 7,
+          "cache": {
+            "write": 0,
+            "read": 71936
+          }
+        },
+        "modelID": "deepseek-v4-flash",
+        "providerID": "opencode-go",
+        "time": {
+          "created": 1785243008760,
+          "completed": 1785243012248
+        },
+        "finish": "tool-calls",
+        "id": "msg_fa8c67ef80014xXTdV54c9skjP",
+        "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP"
+      },
+      "parts": [
+        {
+          "snapshot": "cff9888e9f166b137a8aedf978219b2021573ea4",
+          "type": "step-start",
+          "id": "prt_fa8c6880f001x1eP1sZjN8V7Xo",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c67ef80014xXTdV54c9skjP"
+        },
+        {
+          "type": "reasoning",
+          "text": "Let me check the archive syntax.",
+          "time": {
+            "start": 1785243011510,
+            "end": 1785243011805
+          },
+          "id": "prt_fa8c689b6001GQOmDo3KNw0xXk",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c67ef80014xXTdV54c9skjP"
+        },
+        {
+          "type": "tool",
+          "tool": "bash",
+          "callID": "call_00_dsvLU03BOBfyDluY5XWm8395",
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "openspec archive --help",
+              "workdir": "/Users/timohermans/Dev/WordPicker"
+            },
+            "output": "Usage: openspec archive [options] [change-name]\n\nArchive a completed change and update main specs\n\nOptions:\n  -y, --yes      Skip confirmation prompts\n  --skip-specs   Skip spec update operations (useful for infrastructure,\n                 tooling, or doc-only changes)\n  --no-validate  Skip validation (not recommended, requires confirmation)\n  --json         Output as JSON (non-interactive)\n  --store <id>   Store id to use as the OpenSpec root (a store is a standalone\n                 OpenSpec repo you've registered)\n  -h, --help     display help for command\n",
+            "metadata": {
+              "output": "Usage: openspec archive [options] [change-name]\n\nArchive a completed change and update main specs\n\nOptions:\n  -y, --yes      Skip confirmation prompts\n  --skip-specs   Skip spec update operations (useful for infrastructure,\n                 tooling, or doc-only changes)\n  --no-validate  Skip validation (not recommended, requires confirmation)\n  --json         Output as JSON (non-interactive)\n  --store <id>   Store id to use as the OpenSpec root (a store is a standalone\n                 OpenSpec repo you've registered)\n  -h, --help     display help for command\n",
+              "exit": 0,
+              "truncated": false
+            },
+            "title": "openspec archive --help",
+            "time": {
+              "start": 1785243012176,
+              "end": 1785243012178
+            }
+          },
+          "id": "prt_fa8c68ade001AlaFb76LjmMpE4",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c67ef80014xXTdV54c9skjP"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "cff9888e9f166b137a8aedf978219b2021573ea4",
+          "type": "step-finish",
+          "tokens": {
+            "total": 72094,
+            "input": 77,
+            "output": 74,
+            "reasoning": 7,
+            "cache": {
+              "write": 0,
+              "read": 71936
+            }
+          },
+          "cost": 0.0002348808,
+          "id": "prt_fa8c68c76001kG3Zb698LWB4AN",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c67ef80014xXTdV54c9skjP"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_fa8c6174a001vVOjcKvcc9zzmB",
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "/Users/timohermans/Dev/WordPicker",
+          "root": "/Users/timohermans/Dev/WordPicker"
+        },
+        "cost": 0.0002572192,
+        "tokens": {
+          "total": 72348,
+          "input": 172,
+          "output": 89,
+          "reasoning": 23,
+          "cache": {
+            "write": 0,
+            "read": 72064
+          }
+        },
+        "modelID": "deepseek-v4-flash",
+        "providerID": "opencode-go",
+        "time": {
+          "created": 1785243012251,
+          "completed": 1785243016013
+        },
+        "finish": "tool-calls",
+        "id": "msg_fa8c68c9b001nOIwkzT6FAURMG",
+        "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP"
+      },
+      "parts": [
+        {
+          "snapshot": "cff9888e9f166b137a8aedf978219b2021573ea4",
+          "type": "step-start",
+          "id": "prt_fa8c693c2001pm0MSP0q6LR5Hi",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c68c9b001nOIwkzT6FAURMG"
+        },
+        {
+          "type": "reasoning",
+          "text": "Ah, I should use `--change` flag or just pass the name as positional. Let me try again.",
+          "time": {
+            "start": 1785243014388,
+            "end": 1785243014907
+          },
+          "id": "prt_fa8c694f4001pjCpuAXMCH9O72",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c68c9b001nOIwkzT6FAURMG"
+        },
+        {
+          "type": "tool",
+          "tool": "bash",
+          "callID": "call_00_f8Sl9EO7arpC9GbhBtRW0169",
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "openspec archive \"promote-word-lists-to-main-page\" -y --skip-specs",
+              "workdir": "/Users/timohermans/Dev/WordPicker"
+            },
+            "output": "\nProposal warnings in proposal.md (non-blocking):\n  ⚠ Change must have at least one delta. No deltas found. Ensure your change has a specs/ directory with capability folders (e.g. specs/http-server/spec.md) containing .md files that use delta headers (## ADDED/MODIFIED/REMOVED/RENAMED Requirements) and that each requirement includes at least one \"#### Scenario:\" block. Tip: run \"openspec change show <change-id> --json --deltas-only\" to inspect parsed deltas.\nTask status: ✓ Complete\nSkipping spec updates (--skip-specs flag provided).\nChange 'promote-word-lists-to-main-page' archived as '2026-07-28-promote-word-lists-to-main-page'.\n",
+            "metadata": {
+              "output": "\nProposal warnings in proposal.md (non-blocking):\n  ⚠ Change must have at least one delta. No deltas found. Ensure your change has a specs/ directory with capability folders (e.g. specs/http-server/spec.md) containing .md files that use delta headers (## ADDED/MODIFIED/REMOVED/RENAMED Requirements) and that each requirement includes at least one \"#### Scenario:\" block. Tip: run \"openspec change show <change-id> --json --deltas-only\" to inspect parsed deltas.\nTask status: ✓ Complete\nSkipping spec updates (--skip-specs flag provided).\nChange 'promote-word-lists-to-main-page' archived as '2026-07-28-promote-word-lists-to-main-page'.\n",
+              "exit": 0,
+              "truncated": false
+            },
+            "title": "openspec archive \"promote-word-lists-to-main-page\" -y --skip-specs",
+            "time": {
+              "start": 1785243015465,
+              "end": 1785243015874
+            }
+          },
+          "id": "prt_fa8c696fd0014Hd2d7lpBoWkcM",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c68c9b001nOIwkzT6FAURMG"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "68866681004b897599c4f94754ff333fe233fd7b",
+          "type": "step-finish",
+          "tokens": {
+            "total": 72348,
+            "input": 172,
+            "output": 89,
+            "reasoning": 23,
+            "cache": {
+              "write": 0,
+              "read": 72064
+            }
+          },
+          "cost": 0.0002572192,
+          "id": "prt_fa8c69b1800176FIe9fBXrru0l",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c68c9b001nOIwkzT6FAURMG"
+        },
+        {
+          "type": "patch",
+          "hash": "cff9888e9f166b137a8aedf978219b2021573ea4",
+          "files": [
+            "/Users/timohermans/Dev/WordPicker/openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/.openspec.yaml",
+            "/Users/timohermans/Dev/WordPicker/openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/design.md",
+            "/Users/timohermans/Dev/WordPicker/openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/proposal.md",
+            "/Users/timohermans/Dev/WordPicker/openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/specs/no-spec-changes/spec.md",
+            "/Users/timohermans/Dev/WordPicker/openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/tasks.md"
+          ],
+          "id": "prt_fa8c69b4c001slZth4q5zCEu6X",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c68c9b001nOIwkzT6FAURMG"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_fa8c6174a001vVOjcKvcc9zzmB",
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "/Users/timohermans/Dev/WordPicker",
+          "root": "/Users/timohermans/Dev/WordPicker"
+        },
+        "cost": 0.000260736,
+        "tokens": {
+          "total": 72630,
+          "input": 204,
+          "output": 58,
+          "reasoning": 48,
+          "cache": {
+            "write": 0,
+            "read": 72320
+          }
+        },
+        "modelID": "deepseek-v4-flash",
+        "providerID": "opencode-go",
+        "time": {
+          "created": 1785243016019,
+          "completed": 1785243019769
+        },
+        "finish": "stop",
+        "id": "msg_fa8c69b530019WF28WrC4d0swE",
+        "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP"
+      },
+      "parts": [
+        {
+          "snapshot": "68866681004b897599c4f94754ff333fe233fd7b",
+          "type": "step-start",
+          "id": "prt_fa8c6a2de001B8roI6skLp9G01",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c69b530019WF28WrC4d0swE"
+        },
+        {
+          "type": "reasoning",
+          "text": "The change was archived successfully. The warning about no deltas is expected since this was an implementation-only change with no spec changes, which is why I used `--skip-specs`.\n\nLet me clean up and show the final status.",
+          "time": {
+            "start": 1785243018563,
+            "end": 1785243019103
+          },
+          "id": "prt_fa8c6a5430013bbQIsGL1Zz5md",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c69b530019WF28WrC4d0swE"
+        },
+        {
+          "type": "text",
+          "text": "Archived as `2026-07-28-promote-word-lists-to-main-page`.\n\n**Summary:**\n- Commit `c06e8b0` — 10 files changed, 116 insertions\n- All 14 tests passing\n- Change archived\n\nDone.",
+          "time": {
+            "start": 1785243019104,
+            "end": 1785243019680
+          },
+          "id": "prt_fa8c6a760001INgKVI1BEBoAmz",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c69b530019WF28WrC4d0swE"
+        },
+        {
+          "reason": "stop",
+          "snapshot": "68866681004b897599c4f94754ff333fe233fd7b",
+          "type": "step-finish",
+          "tokens": {
+            "total": 72630,
+            "input": 204,
+            "output": 58,
+            "reasoning": 48,
+            "cache": {
+              "write": 0,
+              "read": 72320
+            }
+          },
+          "cost": 0.000260736,
+          "id": "prt_fa8c6a9cf001fluhuQ8ACr0nFS",
+          "sessionID": "ses_0574dcf63ffem20R5ksvpwoXcP",
+          "messageID": "msg_fa8c69b530019WF28WrC4d0swE"
         }
       ]
     }
