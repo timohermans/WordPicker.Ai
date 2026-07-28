@@ -1,0 +1,61 @@
+{
+  "cli_version": "0.9.0",
+  "checkpoint_id": "01KYMGTFMY82PS1K5N0XK3BNV2",
+  "session_id": "ses_056fe7416ffev655EngS61dRfz",
+  "strategy": "manual-commit",
+  "created_at": "2026-07-28T14:07:25.979576Z",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "save_step_count": 2,
+  "files_touched": [
+    "openspec/changes/pick-words/design.md",
+    "openspec/changes/pick-words/proposal.md",
+    "openspec/changes/pick-words/specs/pick-words/spec.md",
+    "openspec/changes/pick-words/tasks.md"
+  ],
+  "agent": "OpenCode",
+  "model": "deepseek-v4-flash",
+  "turn_id": "5da7b4cc548d",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 28157,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 461440,
+    "output_tokens": 7484,
+    "api_call_count": 24
+  },
+  "session_metrics": {
+    "turn_count": 2
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-07-28T14:07:25.96893Z",
+    "agent_lines": 121,
+    "agent_removed": 0,
+    "human_added": 1,
+    "human_modified": 1,
+    "human_removed": 0,
+    "total_committed": 123,
+    "total_lines_changed": 123,
+    "agent_percentage": 98.3739837398374,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 2,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "openspec/changes/pick-words/.openspec.yaml": 2
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 140,
+      "agent_lines_removed": 0
+    }
+  ]
+}
