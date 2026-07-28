@@ -1,0 +1,8 @@
+Explore the repository at /Users/timohermans/Dev/WordPicker thoroughly. I need to understand:
+
+1. The overall directory structure (list all top-level directories and their immediate children)
+2. The structure of the test project (WordPicker.Tests) - all files and directories
+3. The structure of the main projects (like WordPicker.Web, etc.) - all files and directories
+4. The namespace conventions used across the project (look at the .csproj files and .cs files for namespace declarations)
+
+Return a complete summary of the directory tree for each project, and the namespace conventions found.
