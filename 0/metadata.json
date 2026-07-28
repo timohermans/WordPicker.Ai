@@ -1,0 +1,127 @@
+{
+  "cli_version": "0.9.0",
+  "checkpoint_id": "01KYM2T2M5E71WXWQ42J9SKA69",
+  "session_id": "ses_057f188edffePwO8icLwR67OeV",
+  "strategy": "manual-commit",
+  "created_at": "2026-07-28T10:02:32.171851Z",
+  "branch": "main",
+  "checkpoints_count": 5,
+  "save_step_count": 4,
+  "files_touched": [
+    "README.md",
+    "openspec/changes/initial-word-list-crud/.openspec.yaml",
+    "openspec/changes/initial-word-list-crud/design.md",
+    "openspec/changes/initial-word-list-crud/proposal.md",
+    "openspec/changes/initial-word-list-crud/specs/word-entry-management/spec.md",
+    "openspec/changes/initial-word-list-crud/specs/word-list-management/spec.md",
+    "openspec/changes/initial-word-list-crud/tasks.md",
+    "openspec/config.yaml"
+  ],
+  "agent": "OpenCode",
+  "model": "mimo-v2.5-free",
+  "turn_id": "0d3d39527d19",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 31445,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 668160,
+    "output_tokens": 6340,
+    "api_call_count": 33
+  },
+  "session_metrics": {
+    "turn_count": 5
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-07-28T10:02:32.160572Z",
+    "agent_lines": 251,
+    "agent_removed": 0,
+    "human_added": 3,
+    "human_modified": 6,
+    "human_removed": 0,
+    "total_committed": 259,
+    "total_lines_changed": 260,
+    "agent_percentage": 96.53846153846153,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 1745,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".opencode/commands/opsx-apply.md": 152,
+        ".opencode/commands/opsx-archive.md": 157,
+        ".opencode/commands/opsx-explore.md": 171,
+        ".opencode/commands/opsx-propose.md": 106,
+        ".opencode/commands/opsx-sync.md": 140,
+        ".opencode/commands/opsx-update.md": 78,
+        ".opencode/skills/openspec-apply-change/SKILL.md": 160,
+        ".opencode/skills/openspec-archive-change/SKILL.md": 118,
+        ".opencode/skills/openspec-explore/SKILL.md": 290,
+        ".opencode/skills/openspec-propose/SKILL.md": 114,
+        ".opencode/skills/openspec-sync-specs/SKILL.md": 148,
+        ".opencode/skills/openspec-update-change/SKILL.md": 86,
+        "README.md": 5,
+        "openspec/config.yaml": 20
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 1720,
+      "user_lines_removed": 0,
+      "agent_lines_added": 25,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".opencode/commands/opsx-apply.md": 152,
+        ".opencode/commands/opsx-archive.md": 157,
+        ".opencode/commands/opsx-explore.md": 171,
+        ".opencode/commands/opsx-propose.md": 106,
+        ".opencode/commands/opsx-sync.md": 140,
+        ".opencode/commands/opsx-update.md": 78,
+        ".opencode/skills/openspec-apply-change/SKILL.md": 160,
+        ".opencode/skills/openspec-archive-change/SKILL.md": 118,
+        ".opencode/skills/openspec-explore/SKILL.md": 290,
+        ".opencode/skills/openspec-propose/SKILL.md": 114,
+        ".opencode/skills/openspec-sync-specs/SKILL.md": 148,
+        ".opencode/skills/openspec-update-change/SKILL.md": 86
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 1722,
+      "user_lines_removed": 2,
+      "agent_lines_added": 236,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".opencode/commands/opsx-apply.md": 152,
+        ".opencode/commands/opsx-archive.md": 157,
+        ".opencode/commands/opsx-explore.md": 171,
+        ".opencode/commands/opsx-propose.md": 106,
+        ".opencode/commands/opsx-sync.md": 140,
+        ".opencode/commands/opsx-update.md": 78,
+        ".opencode/skills/openspec-apply-change/SKILL.md": 160,
+        ".opencode/skills/openspec-archive-change/SKILL.md": 118,
+        ".opencode/skills/openspec-explore/SKILL.md": 290,
+        ".opencode/skills/openspec-propose/SKILL.md": 114,
+        ".opencode/skills/openspec-sync-specs/SKILL.md": 148,
+        ".opencode/skills/openspec-update-change/SKILL.md": 86,
+        "openspec/changes/initial-word-list-crud/design.md": 2
+      },
+      "user_removed_per_file": {
+        "openspec/changes/initial-word-list-crud/design.md": 2
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 2,
+      "user_lines_removed": 0,
+      "agent_lines_added": 268,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".gitignore": 2
+      }
+    }
+  ]
+}
