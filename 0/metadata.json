@@ -1,0 +1,102 @@
+{
+  "cli_version": "0.9.0",
+  "checkpoint_id": "01KYMQG5V47CSC19EBTQ6F6EWE",
+  "session_id": "ses_056fe7416ffev655EngS61dRfz",
+  "strategy": "manual-commit",
+  "created_at": "2026-07-28T16:04:08.558064Z",
+  "branch": "main",
+  "checkpoints_count": 4,
+  "save_step_count": 4,
+  "files_touched": [
+    "openspec/changes/archive/2026-07-28-track-word-picks/.openspec.yaml",
+    "openspec/changes/archive/2026-07-28-track-word-picks/design.md",
+    "openspec/changes/archive/2026-07-28-track-word-picks/proposal.md",
+    "openspec/changes/archive/2026-07-28-track-word-picks/specs/pick-words/spec.md",
+    "openspec/changes/archive/2026-07-28-track-word-picks/specs/word-entry-management/spec.md",
+    "openspec/changes/archive/2026-07-28-track-word-picks/tasks.md",
+    "openspec/changes/track-word-picks/.openspec.yaml",
+    "openspec/changes/track-word-picks/design.md",
+    "openspec/changes/track-word-picks/proposal.md",
+    "openspec/changes/track-word-picks/specs/pick-words/spec.md",
+    "openspec/changes/track-word-picks/specs/word-entry-management/spec.md",
+    "openspec/changes/track-word-picks/tasks.md",
+    "openspec/specs/pick-words/spec.md",
+    "openspec/specs/word-entry-management/spec.md",
+    "src/WordPicker.Web/Data/ApplicationDbContext.cs",
+    "src/WordPicker.Web/Migrations/20260728154218_AddPickHistory.Designer.cs",
+    "src/WordPicker.Web/Migrations/20260728154218_AddPickHistory.cs",
+    "src/WordPicker.Web/Migrations/ApplicationDbContextModelSnapshot.cs",
+    "src/WordPicker.Web/Models/PickHistory.cs",
+    "src/WordPicker.Web/Models/WordEntry.cs",
+    "src/WordPicker.Web/Models/WordList.cs",
+    "src/WordPicker.Web/Pages/WordLists/Details.cshtml",
+    "src/WordPicker.Web/Pages/WordLists/Details.cshtml.cs",
+    "src/WordPicker.Web/Pages/WordLists/Pick.cshtml.cs",
+    "tests/WordPicker.Tests/Web/Pages/WordLists/PickTrackingTests.cs",
+    "tests/WordPicker.Tests/Web/Pages/WordLists/WordListsDetailsTests.cs"
+  ],
+  "agent": "OpenCode",
+  "model": "deepseek-v4-flash",
+  "turn_id": "6d7692d24b7e",
+  "checkpoint_transcript_start": 87,
+  "transcript_lines_at_start": 87,
+  "compact_transcript_start": 87,
+  "token_usage": {
+    "input_tokens": 18291,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 3861376,
+    "output_tokens": 9762,
+    "api_call_count": 41
+  },
+  "session_metrics": {
+    "turn_count": 12
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-07-28T16:04:08.511551Z",
+    "agent_lines": 726,
+    "agent_removed": 141,
+    "human_added": 0,
+    "human_modified": 4,
+    "human_removed": 1,
+    "total_committed": 730,
+    "total_lines_changed": 872,
+    "agent_percentage": 99.42660550458714,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 4,
+      "user_lines_removed": 5,
+      "agent_lines_added": 595,
+      "agent_lines_removed": 22,
+      "user_added_per_file": {
+        "src/WordPicker.Web/Pages/WordLists/Pick.cshtml.cs": 4
+      },
+      "user_removed_per_file": {
+        "src/WordPicker.Web/Pages/WordLists/Pick.cshtml.cs": 5
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 595,
+      "agent_lines_removed": 23
+    }
+  ]
+}

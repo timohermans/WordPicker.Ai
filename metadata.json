@@ -1,0 +1,51 @@
+{
+  "cli_version": "0.9.0",
+  "checkpoint_id": "01KYMQG5V47CSC19EBTQ6F6EWE",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "openspec/changes/archive/2026-07-28-track-word-picks/.openspec.yaml",
+    "openspec/changes/archive/2026-07-28-track-word-picks/design.md",
+    "openspec/changes/archive/2026-07-28-track-word-picks/proposal.md",
+    "openspec/changes/archive/2026-07-28-track-word-picks/specs/pick-words/spec.md",
+    "openspec/changes/archive/2026-07-28-track-word-picks/specs/word-entry-management/spec.md",
+    "openspec/changes/archive/2026-07-28-track-word-picks/tasks.md",
+    "openspec/changes/track-word-picks/.openspec.yaml",
+    "openspec/changes/track-word-picks/design.md",
+    "openspec/changes/track-word-picks/proposal.md",
+    "openspec/changes/track-word-picks/specs/pick-words/spec.md",
+    "openspec/changes/track-word-picks/specs/word-entry-management/spec.md",
+    "openspec/changes/track-word-picks/tasks.md",
+    "openspec/specs/pick-words/spec.md",
+    "openspec/specs/word-entry-management/spec.md",
+    "src/WordPicker.Web/Data/ApplicationDbContext.cs",
+    "src/WordPicker.Web/Migrations/20260728154218_AddPickHistory.Designer.cs",
+    "src/WordPicker.Web/Migrations/20260728154218_AddPickHistory.cs",
+    "src/WordPicker.Web/Migrations/ApplicationDbContextModelSnapshot.cs",
+    "src/WordPicker.Web/Models/PickHistory.cs",
+    "src/WordPicker.Web/Models/WordEntry.cs",
+    "src/WordPicker.Web/Models/WordList.cs",
+    "src/WordPicker.Web/Pages/WordLists/Details.cshtml",
+    "src/WordPicker.Web/Pages/WordLists/Details.cshtml.cs",
+    "src/WordPicker.Web/Pages/WordLists/Pick.cshtml.cs",
+    "tests/WordPicker.Tests/Web/Pages/WordLists/PickTrackingTests.cs",
+    "tests/WordPicker.Tests/Web/Pages/WordLists/WordListsDetailsTests.cs"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 18291,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 3861376,
+    "output_tokens": 9762,
+    "api_call_count": 41
+  }
+}
