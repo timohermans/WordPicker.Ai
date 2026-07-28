@@ -1,0 +1,37 @@
+{
+  "cli_version": "0.9.0",
+  "checkpoint_id": "01KYMAZKACXTK6SSB35Q6N86X6",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "tests/WordPicker.Tests/Web/Pages/WordLists/WordListsDeleteTests.cs",
+    "tests/WordPicker.Tests/Web/Pages/WordLists/WordListsDetailsAddWordTests.cs",
+    "tests/WordPicker.Tests/Web/Pages/WordLists/WordListsDetailsRemoveWordTests.cs",
+    "tests/WordPicker.Tests/Web/Pages/WordLists/WordListsDetailsTests.cs",
+    "tests/WordPicker.Tests/Web/Pages/WordLists/WordListsIndexPostTests.cs",
+    "tests/WordPicker.Tests/Web/Pages/WordLists/WordListsIndexTests.cs",
+    "tests/WordPicker.Tests/WordListsDeleteTests.cs",
+    "tests/WordPicker.Tests/WordListsDetailsAddWordTests.cs",
+    "tests/WordPicker.Tests/WordListsDetailsRemoveWordTests.cs",
+    "tests/WordPicker.Tests/WordListsDetailsTests.cs",
+    "tests/WordPicker.Tests/WordListsIndexPostTests.cs",
+    "tests/WordPicker.Tests/WordListsIndexTests.cs"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 17355,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 193280,
+    "output_tokens": 4901,
+    "api_call_count": 12
+  }
+}

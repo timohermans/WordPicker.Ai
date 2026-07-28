@@ -1,0 +1,1 @@
+I want you to add namespaces/directory in WordPicker.Tests that mirror the projects and namespaces. For example, there should be a directory Web/Pages for all the page tests in the test project.
