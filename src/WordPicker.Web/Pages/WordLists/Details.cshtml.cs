@@ -17,6 +17,8 @@ public class DetailsModel : PageModel
 
     public WordList? WordList { get; set; }
 
+    public List<PickHistory> PickHistories { get; set; } = new();
+
     [BindProperty]
     public string NewWord { get; set; } = string.Empty;
 
@@ -35,6 +37,13 @@ public class DetailsModel : PageModel
         {
             return NotFound();
         }
+
+        PickHistories = await _context.PickHistories
+            .Where(ph => ph.WordListId == id.Value)
+            .Include(ph => ph.WordEntry)
+            .OrderByDescending(ph => ph.PickedAt)
+            .Take(20)
+            .ToListAsync();
 
         return Page();
     }

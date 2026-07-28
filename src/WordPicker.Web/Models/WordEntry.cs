@@ -14,5 +14,9 @@ public class WordEntry
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+    public int LastPickCycle { get; set; }
+
     public WordList WordList { get; set; } = null!;
+
+    public ICollection<PickHistory> PickHistories { get; set; } = new List<PickHistory>();
 }

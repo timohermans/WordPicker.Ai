@@ -44,4 +44,44 @@ public class WordListsDetailsTests : BaseTest
         // Assert
         Assert.IsInstanceOfType(result, typeof(NotFoundResult));
     }
+
+    [TestMethod]
+    [TestCategory(TestCategories.Unit)]
+    public async Task OnGetAsync_WhenListHasPickHistory_LoadsLast20Picks()
+    {
+        using var context = CreateContext();
+        var list = new WordList { Name = "Test List" };
+        context.WordLists.Add(list);
+        context.SaveChanges();
+        var entry = new WordEntry { WordListId = list.Id, Value = "apple" };
+        context.WordEntries.Add(entry);
+        context.SaveChanges();
+        context.PickHistories.Add(new PickHistory { WordEntryId = entry.Id, WordListId = list.Id, PickedAt = DateTime.UtcNow });
+        context.SaveChanges();
+
+        var pageModel = new DetailsModel(context);
+
+        var result = await pageModel.OnGetAsync(list.Id);
+
+        Assert.IsInstanceOfType(result, typeof(PageResult));
+        Assert.AreEqual(1, pageModel.PickHistories.Count);
+        Assert.AreEqual("apple", pageModel.PickHistories[0].WordEntry.Value);
+    }
+
+    [TestMethod]
+    [TestCategory(TestCategories.Unit)]
+    public async Task OnGetAsync_WhenListHasNoPickHistory_ShowsEmpty()
+    {
+        using var context = CreateContext();
+        var list = new WordList { Name = "Test List" };
+        context.WordLists.Add(list);
+        context.SaveChanges();
+
+        var pageModel = new DetailsModel(context);
+
+        var result = await pageModel.OnGetAsync(list.Id);
+
+        Assert.IsInstanceOfType(result, typeof(PageResult));
+        Assert.AreEqual(0, pageModel.PickHistories.Count);
+    }
 }

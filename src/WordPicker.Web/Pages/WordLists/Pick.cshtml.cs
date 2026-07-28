@@ -40,10 +40,11 @@ public class PickModel : PageModel
         }
 
         var wordLists = await _context.WordLists
+            .Include(w => w.Words)
             .Where(w => SelectedListIds.Contains(w.Id))
             .OrderByDescending(w => w.CreatedAt)
             .ToDictionaryAsync(w => w.Id);
-        
+
         WordLists = [.. wordLists.Values];
 
         foreach (var listId in SelectedListIds)
@@ -51,17 +52,38 @@ public class PickModel : PageModel
             if (!wordLists.TryGetValue(listId, out var list))
                 continue;
 
-            var words = await _context.WordEntries
-                .Where(e => e.WordListId == listId)
-                .ToListAsync();
-            var word = words.OrderBy(_ => Random.Shared.Next()).FirstOrDefault();
+            var eligible = list.Words
+                .Where(e => e.WordListId == listId && e.LastPickCycle < list.CurrentPickCycle)
+                .ToList();
+
+            if (eligible.Count == 0)
+            {
+                list.CurrentPickCycle++;
+                eligible = [.. list.Words];
+            }
+
+            var picked = eligible.OrderBy(_ => Random.Shared.Next()).FirstOrDefault();
+
+            if (picked != null)
+            {
+                picked.LastPickCycle = list.CurrentPickCycle;
+
+                _context.PickHistories.Add(new PickHistory
+                {
+                    WordEntryId = picked.Id,
+                    WordListId = listId,
+                    PickedAt = DateTime.UtcNow
+                });
+            }
 
             Results.Add(new PickResult
             {
                 ListName = list.Name,
-                Word = word?.Value
+                Word = picked?.Value
             });
         }
+
+        await _context.SaveChangesAsync();
 
         return Page();
     }

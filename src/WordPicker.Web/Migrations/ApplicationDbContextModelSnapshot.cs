@@ -17,10 +17,38 @@ namespace WordPicker.Web.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.0")
+                .HasAnnotation("ProductVersion", "10.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("WordPicker.Web.Models.PickHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("PickedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<int>("WordEntryId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("WordListId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WordEntryId");
+
+                    b.HasIndex("WordListId");
+
+                    b.ToTable("PickHistories");
+                });
 
             modelBuilder.Entity("WordPicker.Web.Models.WordEntry", b =>
                 {
@@ -34,6 +62,11 @@ namespace WordPicker.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<int>("LastPickCycle")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -64,6 +97,9 @@ namespace WordPicker.Web.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<int>("CurrentPickCycle")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -79,6 +115,25 @@ namespace WordPicker.Web.Migrations
                     b.ToTable("WordLists");
                 });
 
+            modelBuilder.Entity("WordPicker.Web.Models.PickHistory", b =>
+                {
+                    b.HasOne("WordPicker.Web.Models.WordEntry", "WordEntry")
+                        .WithMany("PickHistories")
+                        .HasForeignKey("WordEntryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WordPicker.Web.Models.WordList", "WordList")
+                        .WithMany("PickHistories")
+                        .HasForeignKey("WordListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("WordEntry");
+
+                    b.Navigation("WordList");
+                });
+
             modelBuilder.Entity("WordPicker.Web.Models.WordEntry", b =>
                 {
                     b.HasOne("WordPicker.Web.Models.WordList", "WordList")
@@ -90,8 +145,15 @@ namespace WordPicker.Web.Migrations
                     b.Navigation("WordList");
                 });
 
+            modelBuilder.Entity("WordPicker.Web.Models.WordEntry", b =>
+                {
+                    b.Navigation("PickHistories");
+                });
+
             modelBuilder.Entity("WordPicker.Web.Models.WordList", b =>
                 {
+                    b.Navigation("PickHistories");
+
                     b.Navigation("Words");
                 });
 #pragma warning restore 612, 618

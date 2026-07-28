@@ -55,4 +55,26 @@
             }
         </ul>
     }
+
+    <hr class="my-4" />
+
+    <h2>Pick History</h2>
+    @if (!Model.PickHistories.Any())
+    {
+        <div class="alert alert-info">
+            <p>No pick history yet.</p>
+        </div>
+    }
+    else
+    {
+        <ul class="list-group">
+            @foreach (var pick in Model.PickHistories)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>@pick.WordEntry.Value</span>
+                    <small class="text-muted">@pick.PickedAt.ToString("g")</small>
+                </li>
+            }
+        </ul>
+    }
 }

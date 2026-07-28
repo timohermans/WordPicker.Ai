@@ -14,6 +14,8 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<WordEntry> WordEntries => Set<WordEntry>();
 
+    public DbSet<PickHistory> PickHistories => Set<PickHistory>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -44,6 +46,9 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+            entity.Property(e => e.LastPickCycle)
+                .HasDefaultValue(0);
+
             entity.HasOne(e => e.WordList)
                 .WithMany(w => w.Words)
                 .HasForeignKey(e => e.WordListId)
@@ -51,6 +56,27 @@ public class ApplicationDbContext : DbContext
 
             entity.HasIndex(e => new { e.WordListId, e.Value })
                 .IsUnique();
+        });
+
+        modelBuilder.Entity<PickHistory>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.PickedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            entity.HasOne(e => e.WordEntry)
+                .WithMany(w => w.PickHistories)
+                .HasForeignKey(e => e.WordEntryId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(e => e.WordList)
+                .WithMany(w => w.PickHistories)
+                .HasForeignKey(e => e.WordListId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasIndex(e => e.WordListId);
+            entity.HasIndex(e => e.WordEntryId);
         });
     }
 }
