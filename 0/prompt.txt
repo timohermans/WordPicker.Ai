@@ -1,0 +1,1 @@
+to the project setup tasks, the very first task should be to add a .gitignore for asp.net projects
