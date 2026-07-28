@@ -1,0 +1,56 @@
+@page
+@model WordPicker.Web.Pages.WordLists.IndexModel
+@{
+    ViewData["Title"] = "Word Lists";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Word Lists</h1>
+</div>
+
+@if (!Model.WordLists.Any())
+{
+    <div class="alert alert-info">
+        <p>No word lists yet. Create your first one below!</p>
+    </div>
+}
+else
+{
+    <div class="list-group mb-4">
+        @foreach (var list in Model.WordLists)
+        {
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <a asp-page="./Details" asp-route-id="@list.Id" class="text-decoration-none">
+                        <strong>@list.Name</strong>
+                    </a>
+                    <br />
+                    <small class="text-muted">Created: @list.CreatedAt.ToString("g")</small>
+                </div>
+                <a asp-page="./Delete" asp-route-id="@list.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+            </div>
+        }
+    </div>
+}
+
+<hr class="my-4" />
+
+<h2>Create New Word List</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="NewWordList.Name" class="form-label">Name</label>
+                <input asp-for="NewWordList.Name" class="form-control" placeholder="Enter list name" />
+                <span asp-validation-for="NewWordList.Name" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Create List</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

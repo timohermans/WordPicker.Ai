@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/WordPicker.Web/WordPicker.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/WordPicker.Tests/WordPicker.Tests.csproj" />
+  </Folder>
+</Solution>
