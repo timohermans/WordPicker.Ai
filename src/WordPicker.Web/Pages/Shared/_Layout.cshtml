@@ -12,7 +12,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script defer src="~/js/site.js" asp-append-version="true"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -24,9 +24,6 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/WordLists/Index">Word Lists</a>
                         </li>
                     </ul>
@@ -34,13 +31,13 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container d-flex flex-column flex-grow-1">
+        <main role="main" class="my-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted d-flex align-items-center">
         <div class="container">
             &copy; 2026 - WordPicker - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
