@@ -3,18 +3,16 @@
   "checkpoint_id": "01KYMCCE81Q9XRCZ14C4JRFE22",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 12,
+  "checkpoints_count": 2,
   "files_touched": [
-    "openspec/changes/promote-word-lists-to-main-page/.openspec.yaml",
-    "openspec/changes/promote-word-lists-to-main-page/design.md",
-    "openspec/changes/promote-word-lists-to-main-page/proposal.md",
-    "openspec/changes/promote-word-lists-to-main-page/specs/no-spec-changes/spec.md",
-    "openspec/changes/promote-word-lists-to-main-page/tasks.md",
+    "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/.openspec.yaml",
+    "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/design.md",
+    "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/proposal.md",
+    "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/specs/no-spec-changes/spec.md",
+    "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/tasks.md",
     "src/WordPicker.Web/Pages/Index.cshtml",
     "src/WordPicker.Web/Pages/Index.cshtml.cs",
-    "src/WordPicker.Web/Pages/Shared/_Layout.cshtml",
-    "src/WordPicker.Web/wwwroot/css/site.css",
-    "tests/WordPicker.Tests/Web/Pages/HomePageRedirectTests.cs"
+    "src/WordPicker.Web/wwwroot/css/site.css"
   ],
   "sessions": [
     {
@@ -33,11 +31,11 @@
     }
   ],
   "token_usage": {
-    "input_tokens": 124534,
+    "input_tokens": 125741,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 9289728,
-    "output_tokens": 36074,
-    "api_call_count": 194
+    "cache_read_tokens": 9648512,
+    "output_tokens": 36616,
+    "api_call_count": 198
   },
   "combined_attribution": {
     "calculated_at": "2026-07-28T12:50:04.923983Z",

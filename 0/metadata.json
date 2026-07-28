@@ -3,111 +3,53 @@
   "checkpoint_id": "01KYMCCE81Q9XRCZ14C4JRFE22",
   "session_id": "ses_0574dcf63ffem20R5ksvpwoXcP",
   "strategy": "manual-commit",
-  "created_at": "2026-07-28T12:49:51.57576Z",
+  "created_at": "2026-07-28T12:52:10.486048Z",
   "branch": "main",
-  "checkpoints_count": 11,
-  "save_step_count": 8,
+  "checkpoints_count": 1,
+  "save_step_count": 2,
   "files_touched": [
-    "openspec/changes/promote-word-lists-to-main-page/.openspec.yaml",
-    "openspec/changes/promote-word-lists-to-main-page/design.md",
-    "openspec/changes/promote-word-lists-to-main-page/proposal.md",
-    "openspec/changes/promote-word-lists-to-main-page/specs/no-spec-changes/spec.md",
-    "openspec/changes/promote-word-lists-to-main-page/tasks.md",
+    "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/.openspec.yaml",
+    "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/design.md",
+    "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/proposal.md",
+    "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/specs/no-spec-changes/spec.md",
+    "openspec/changes/archive/2026-07-28-promote-word-lists-to-main-page/tasks.md",
     "src/WordPicker.Web/Pages/Index.cshtml",
     "src/WordPicker.Web/Pages/Index.cshtml.cs",
-    "src/WordPicker.Web/Pages/Shared/_Layout.cshtml",
-    "src/WordPicker.Web/wwwroot/css/site.css",
-    "tests/WordPicker.Tests/Web/Pages/HomePageRedirectTests.cs"
+    "src/WordPicker.Web/wwwroot/css/site.css"
   ],
   "agent": "OpenCode",
   "model": "deepseek-v4-flash",
   "turn_id": "fdf04ea5bfb6",
   "compact_transcript_start": 0,
   "token_usage": {
-    "input_tokens": 51016,
+    "input_tokens": 52223,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 3779712,
-    "output_tokens": 16827,
-    "api_call_count": 85
+    "cache_read_tokens": 4138496,
+    "output_tokens": 17369,
+    "api_call_count": 89
   },
   "session_metrics": {
-    "turn_count": 11
+    "turn_count": 12
   },
   "initial_attribution": {
-    "calculated_at": "2026-07-28T12:49:51.552617Z",
-    "agent_lines": 111,
-    "agent_removed": 22,
-    "human_added": 0,
+    "calculated_at": "2026-07-28T12:52:10.460185Z",
+    "agent_lines": 84,
+    "agent_removed": 0,
+    "human_added": 27,
     "human_modified": 42,
     "human_removed": 0,
     "total_committed": 153,
-    "total_lines_changed": 175,
-    "agent_percentage": 76,
+    "total_lines_changed": 160,
+    "agent_percentage": 52.5,
     "metric_version": 2
   },
   "prompt_attributions": [
     {
-      "checkpoint_number": 1,
+      "checkpoint_number": 2,
       "user_lines_added": 0,
       "user_lines_removed": 0,
       "agent_lines_added": 0,
       "agent_lines_removed": 0
-    },
-    {
-      "checkpoint_number": 2,
-      "user_lines_added": 0,
-      "user_lines_removed": 0,
-      "agent_lines_added": 97,
-      "agent_lines_removed": 0
-    },
-    {
-      "checkpoint_number": 3,
-      "user_lines_added": 0,
-      "user_lines_removed": 0,
-      "agent_lines_added": 81,
-      "agent_lines_removed": 0
-    },
-    {
-      "checkpoint_number": 4,
-      "user_lines_added": 0,
-      "user_lines_removed": 0,
-      "agent_lines_added": 82,
-      "agent_lines_removed": 0
-    },
-    {
-      "checkpoint_number": 5,
-      "user_lines_added": 0,
-      "user_lines_removed": 0,
-      "agent_lines_added": 145,
-      "agent_lines_removed": 57
-    },
-    {
-      "checkpoint_number": 6,
-      "user_lines_added": 0,
-      "user_lines_removed": 0,
-      "agent_lines_added": 146,
-      "agent_lines_removed": 58
-    },
-    {
-      "checkpoint_number": 7,
-      "user_lines_added": 0,
-      "user_lines_removed": 0,
-      "agent_lines_added": 147,
-      "agent_lines_removed": 59
-    },
-    {
-      "checkpoint_number": 8,
-      "user_lines_added": 0,
-      "user_lines_removed": 0,
-      "agent_lines_added": 151,
-      "agent_lines_removed": 59
-    },
-    {
-      "checkpoint_number": 9,
-      "user_lines_added": 0,
-      "user_lines_removed": 0,
-      "agent_lines_added": 153,
-      "agent_lines_removed": 59
     }
   ]
 }
