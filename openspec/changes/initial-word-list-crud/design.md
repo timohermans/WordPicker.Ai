@@ -51,6 +51,8 @@ WordEntry
 - **Server-Side Rendering**: MVC views with Razor, Alpine.js for interactivity only (e.g., delete confirmations, form validation feedback)
 - **Migrations**: EF Core Code-First migrations for database schema management
 - **Projects**: No additional projects other than the MVC project should be made for functional code
+- **No npm**: All JavaScript and CSS dependencies (Bootstrap, Alpine.js, etc.) SHALL be loaded via CDN only; never use npm, LibMan, or other package managers for client-side assets
+- **No Shared Logic**: Logic and queries SHALL NOT be shared across controllers via services, helpers, or shared utilities; each controller owns its logic entirely unless explicitly permitted
 
 ### Testing Decisions
 

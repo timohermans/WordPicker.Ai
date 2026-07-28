@@ -1,11 +1,12 @@
 ## 1. Project Setup
 
-- [ ] 1.1 Create new ASP.NET Core MVC project in the repository root
-- [ ] 1.2 Add NuGet packages: EF Core, Npgsql provider, EF Core Design tools
-- [ ] 1.3 Add Bootstrap 5 and Alpine.js to the project (CDN)
-- [ ] 1.4 Create or update appsettings.json with empty config placeholders (connection strings, etc.)
-- [ ] 1.5 Create or update appsettings.Development.json with actual development config values
-- [ ] 1.6 Add appsettings.Development.json to .gitignore
+- [ ] 1.1 Add .gitignore for ASP.NET projects
+- [ ] 1.2 Create new ASP.NET Core MVC project in the repository root
+- [ ] 1.3 Add NuGet packages: EF Core, Npgsql provider, EF Core Design tools
+- [ ] 1.4 Add Bootstrap 5 and Alpine.js to the project (CDN)
+- [ ] 1.5 Create appsettings.json with empty config placeholders (connection strings, etc.)
+- [ ] 1.6 Create appsettings.Development.json with actual development config values
+- [ ] 1.7 Add appsettings.Development.json to .gitignore
 
 ## 2. Data Layer
 
