@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.9.0",
+  "checkpoint_id": "01KYMHZ6NXSCEYKC2TT0A2CMRW",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "openspec/changes/pick-words/tasks.md",
+    "src/WordPicker.Web/Pages/WordLists/Index.cshtml",
+    "src/WordPicker.Web/Pages/WordLists/Pick.cshtml",
+    "src/WordPicker.Web/Pages/WordLists/Pick.cshtml.cs",
+    "tests/WordPicker.Tests/Web/Pages/WordLists/PickTests.cs"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 15117,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 1060736,
+    "output_tokens": 5669,
+    "api_call_count": 23
+  }
+}
