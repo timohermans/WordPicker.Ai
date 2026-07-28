@@ -3,10 +3,16 @@
   "checkpoint_id": "01KYM9T77TYKTQ23XF3M5W5886",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 7,
+  "checkpoints_count": 11,
   "files_touched": [
     ".gitignore",
     "WordPicker.slnx",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/.openspec.yaml",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/design.md",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/proposal.md",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/specs/word-entry-management/spec.md",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/specs/word-list-management/spec.md",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/tasks.md",
     "openspec/changes/initial-word-list-crud/.openspec.yaml",
     "openspec/changes/initial-word-list-crud/design.md",
     "openspec/changes/initial-word-list-crud/proposal.md",
@@ -18,6 +24,8 @@
     "openspec/changes/restructure-to-src-layout/proposal.md",
     "openspec/changes/restructure-to-src-layout/specs/structural-reorganization/spec.md",
     "openspec/changes/restructure-to-src-layout/tasks.md",
+    "openspec/specs/word-entry-management/spec.md",
+    "openspec/specs/word-list-management/spec.md",
     "src/WordPicker.Web/Data/ApplicationDbContext.cs",
     "src/WordPicker.Web/Migrations/20260728115238_InitialCreate.Designer.cs",
     "src/WordPicker.Web/Migrations/20260728115238_InitialCreate.cs",
@@ -126,13 +134,20 @@
       "compact_transcript": "/0/transcript.jsonl",
       "content_hash": "/0/content_hash.txt",
       "prompt": "/0/prompt.txt"
+    },
+    {
+      "metadata": "/1/metadata.json",
+      "transcript": "/1/full.jsonl",
+      "compact_transcript": "/1/transcript.jsonl",
+      "content_hash": "/1/content_hash.txt",
+      "prompt": "/1/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 47620,
+    "input_tokens": 607939,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 3561600,
-    "output_tokens": 16420,
-    "api_call_count": 87
+    "cache_read_tokens": 21102867,
+    "output_tokens": 58607,
+    "api_call_count": 288
   }
 }

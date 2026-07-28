@@ -1,0 +1,83 @@
+{
+  "cli_version": "0.9.0",
+  "checkpoint_id": "01KYM9T77TYKTQ23XF3M5W5886",
+  "session_id": "ses_057f188edffePwO8icLwR67OeV",
+  "strategy": "manual-commit",
+  "created_at": "2026-07-28T12:05:24.245894Z",
+  "branch": "main",
+  "checkpoints_count": 4,
+  "save_step_count": 5,
+  "files_touched": [
+    ".gitignore",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/.openspec.yaml",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/design.md",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/proposal.md",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/specs/word-entry-management/spec.md",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/specs/word-list-management/spec.md",
+    "openspec/changes/archive/2026-07-28-initial-word-list-crud/tasks.md",
+    "openspec/changes/initial-word-list-crud/.openspec.yaml",
+    "openspec/changes/initial-word-list-crud/design.md",
+    "openspec/changes/initial-word-list-crud/proposal.md",
+    "openspec/changes/initial-word-list-crud/specs/word-entry-management/spec.md",
+    "openspec/changes/initial-word-list-crud/specs/word-list-management/spec.md",
+    "openspec/changes/initial-word-list-crud/tasks.md",
+    "openspec/specs/word-entry-management/spec.md",
+    "openspec/specs/word-list-management/spec.md"
+  ],
+  "agent": "OpenCode",
+  "model": "deepseek-v4-flash",
+  "turn_id": "a2d1e03278e9",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 560319,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 17541267,
+    "output_tokens": 42187,
+    "api_call_count": 201
+  },
+  "session_metrics": {
+    "turn_count": 15
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-07-28T12:05:23.764376Z",
+    "agent_lines": 744,
+    "agent_removed": 264,
+    "human_added": 84213,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 84957,
+    "total_lines_changed": 85221,
+    "agent_percentage": 1.1828070545992184,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 84533,
+      "agent_lines_removed": 44
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 84838,
+      "agent_lines_removed": 265
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    }
+  ]
+}
