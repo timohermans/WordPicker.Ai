@@ -5,7 +5,7 @@ WordPicker is a new application requiring a web-based interface for managing wor
 ## Goals / Non-Goals
 
 **Goals:**
-- Establish ASP.NET Core MVC project structure with standard conventions
+- Establish ASP.NET Core Razor Pages project structure with standard conventions
 - Implement responsive UI with Bootstrap for styling and Alpine.js for interactive components
 - Create persistent storage for word lists and words using PostgreSQL via Entity Framework Core
 - Provide intuitive CRUD operations for word lists and word entries
@@ -14,7 +14,7 @@ WordPicker is a new application requiring a web-based interface for managing wor
 - User authentication/authorization (future enhancement)
 - Word definitions, translations, or linguistic features
 - Import/export functionality
-- API endpoints (MVC views only for now)
+- API endpoints (Razor Pages only for now)
 
 ## Decisions
 
@@ -22,12 +22,13 @@ WordPicker is a new application requiring a web-based interface for managing wor
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| Backend Framework | ASP.NET Core MVC | Mature, well-documented, strong EF Core integration |
+| Backend Framework | ASP.NET Core Razor Pages | Page-focused, simpler for CRUD, strong EF Core integration |
+| Target Framework | .NET 10 | Latest LTS release |
 | Frontend Styling | Bootstrap 5 | Rapid responsive UI development, widely supported |
 | Client Interactivity | Alpine.js | Lightweight, jQuery-free interactivity for form enhancements |
 | ORM | Entity Framework Core | Native .NET integration, migration support |
 | Database | PostgreSQL | Robust, free, excellent EF Core support via Npgsql |
-| Project Structure | Standard MVC (Controllers/Views/Models) | Convention-based, IDE-friendly |
+| Project Structure | Razor Pages (Pages/ folder) | Page-based routing, code-behind pattern |
 
 ### Data Model
 
@@ -47,12 +48,12 @@ WordEntry
 
 ### Architecture Decisions
 
-- **No Repository Pattern**: Use EF Core DbContext directly in controllers for simplicity in this initial phase; never ever use repository patterns
-- **Server-Side Rendering**: MVC views with Razor, Alpine.js for interactivity only (e.g., delete confirmations, form validation feedback)
+- **No Repository Pattern**: Use EF Core DbContext directly in page models for simplicity in this initial phase; never ever use repository patterns
+- **Server-Side Rendering**: Razor Pages with Alpine.js for interactivity only (e.g., delete confirmations, form validation feedback)
 - **Migrations**: EF Core Code-First migrations for database schema management
-- **Projects**: No additional projects other than the MVC project should be made for functional code
+- **Projects**: No additional projects other than the Razor Pages project should be made for functional code
 - **No npm**: All JavaScript and CSS dependencies (Bootstrap, Alpine.js, etc.) SHALL be loaded via CDN only; never use npm, LibMan, or other package managers for client-side assets
-- **No Shared Logic**: Logic and queries SHALL NOT be shared across controllers via services, helpers, or shared utilities; each controller owns its logic entirely unless explicitly permitted
+- **No Shared Logic**: Logic and queries SHALL NOT be shared across pages via services, helpers, or shared utilities; each page model owns its logic entirely unless explicitly permitted
 
 ### Testing Decisions
 
@@ -83,6 +84,6 @@ WordEntry
 ## Risks / Trade-offs
 
 - **No authentication**: Lists are publicly accessible; acceptable for initial prototype but must be addressed before production use
-- **EF Core in controllers**: Tight coupling acceptable for initial simplicity; refactor to services layer if business logic grows
+- **EF Core in page models**: Tight coupling acceptable for initial simplicity; refactor to services layer if business logic grows
 - **Alpine.js learning curve**: Minimal; Alpine is intentionally simple and declarative
 - **PostgreSQL dependency**: Requires local PostgreSQL installation; could use SQLite for development if needed

@@ -4,7 +4,7 @@ The core functionality of WordPicker revolves around organizing and manipulating
 
 ## What Changes
 
-- New ASP.NET Core MVC web application with Bootstrap and Alpine.js
+- New ASP.NET Core Razor Pages web application with Bootstrap and Alpine.js
 - Ability to create new word lists with a name
 - Ability to view all existing word lists
 - Ability to view words within a specific list
@@ -26,7 +26,7 @@ The core functionality of WordPicker revolves around organizing and manipulating
 
 ## Impact
 
-- **Code**: New ASP.NET Core MVC project structure
+- **Code**: New ASP.NET Core Razor Pages project structure
 - **Database**: New PostgreSQL database with Entity Framework Core migrations
 - **Dependencies**: Addition of EF Core, Npgsql provider, Bootstrap, Alpine.js
 - **UI**: New responsive web interface for list management
