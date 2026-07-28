@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.9.0",
+  "checkpoint_id": "01KYMP6Q2JAFYCW1ZQ2BNES2J2",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "openspec/changes/track-word-picks/.openspec.yaml",
+    "openspec/changes/track-word-picks/design.md",
+    "openspec/changes/track-word-picks/proposal.md",
+    "openspec/changes/track-word-picks/specs/pick-words/spec.md",
+    "openspec/changes/track-word-picks/specs/word-entry-management/spec.md",
+    "openspec/changes/track-word-picks/tasks.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 14393,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 1667584,
+    "output_tokens": 5629,
+    "api_call_count": 23
+  }
+}
