@@ -23,7 +23,7 @@
     <form method="post" asp-page-handler="AddWord" asp-route-id="@Model.WordList.Id" class="mb-4">
         <div class="row g-2">
             <div class="col-md-8">
-                <input asp-for="NewWord" class="form-control" placeholder="Enter a new word" required />
+                <input asp-for="NewWord" class="form-control" placeholder="Enter a new word" required autofocus/>
             </div>
             <div class="col-md-4">
                 <button type="submit" class="btn btn-primary w-100">Add Word</button>
