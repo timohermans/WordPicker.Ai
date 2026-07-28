@@ -1,0 +1,39 @@
+{
+  "cli_version": "0.9.0",
+  "checkpoint_id": "01KYMA53YSGRHG4FD651PRMQVS",
+  "session_id": "ses_057f188edffePwO8icLwR67OeV",
+  "strategy": "manual-commit",
+  "created_at": "2026-07-28T12:11:21.48545Z",
+  "branch": "main",
+  "checkpoints_count": 4,
+  "save_step_count": 1,
+  "files_touched": [
+    "WordPicker.Tests/WordPicker.Tests.csproj"
+  ],
+  "agent": "OpenCode",
+  "model": "deepseek-v4-flash",
+  "turn_id": "a2d1e03278e9",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 560319,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 17541267,
+    "output_tokens": 42187,
+    "api_call_count": 201
+  },
+  "session_metrics": {
+    "turn_count": 15
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-07-28T12:11:20.991339Z",
+    "agent_lines": 20,
+    "agent_removed": 0,
+    "human_added": 120,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 140,
+    "total_lines_changed": 259,
+    "agent_percentage": 7.722007722007722,
+    "metric_version": 2
+  }
+}
