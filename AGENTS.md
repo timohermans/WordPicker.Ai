@@ -57,6 +57,9 @@ dotnet test tests/WordPicker.Tests       # single project
 
 - **No Repository Pattern** — use EF Core `DbContext` directly in page models
 - **No shared logic** — each page model owns its own queries and logic; no services, helpers, or shared utilities
+- **Only query what you need with EF Core** — Never do an entire ToList for example, always only select the columns you need.
+- **Never query inside a loop** — Keep the query to the edges of the code.
+- **Keep performance in mind** — Don't use `FirstOrDefault` in a loop when you don't have to and create a dictionary beforehand.
 - **No additional projects** for functional code (only the web project and test project)
 - **No npm** — all client-side assets (Bootstrap, Alpine.js) loaded via CDN
 - **All client-side interactivity uses Alpine.js** — no vanilla JS for DOM manipulation, no jQuery, no Stimulus, no htmx
