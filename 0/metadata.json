@@ -1,0 +1,74 @@
+{
+  "cli_version": "0.9.0",
+  "checkpoint_id": "01KYMA53YSGRHG4FD651PRMQVS",
+  "session_id": "ses_05784f30dffe90VhGWcwpMkcpi",
+  "strategy": "manual-commit",
+  "created_at": "2026-07-28T12:11:07.626184Z",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "save_step_count": 3,
+  "files_touched": [
+    "WordPicker.Tests/WordPicker.Tests.csproj",
+    "openspec/changes/archive/2026-07-28-restructure-to-src-layout/.openspec.yaml",
+    "openspec/changes/archive/2026-07-28-restructure-to-src-layout/design.md",
+    "openspec/changes/archive/2026-07-28-restructure-to-src-layout/proposal.md",
+    "openspec/changes/archive/2026-07-28-restructure-to-src-layout/specs/structural-reorganization/spec.md",
+    "openspec/changes/archive/2026-07-28-restructure-to-src-layout/tasks.md",
+    "openspec/changes/restructure-to-src-layout/.openspec.yaml",
+    "openspec/changes/restructure-to-src-layout/design.md",
+    "openspec/changes/restructure-to-src-layout/proposal.md",
+    "openspec/changes/restructure-to-src-layout/specs/structural-reorganization/spec.md",
+    "openspec/changes/restructure-to-src-layout/tasks.md",
+    "src/WordPicker.Web/WordPicker.Web.csproj",
+    "tests/WordPicker.Tests/WordPicker.Tests.csproj"
+  ],
+  "agent": "OpenCode",
+  "model": "deepseek-v4-flash",
+  "turn_id": "25fe97293d8a",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 73162,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 5316864,
+    "output_tokens": 19132,
+    "api_call_count": 108
+  },
+  "session_metrics": {
+    "turn_count": 9
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-07-28T12:11:07.116094Z",
+    "agent_lines": 140,
+    "agent_removed": 119,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 140,
+    "total_lines_changed": 259,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 113,
+      "agent_lines_removed": 113
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 140,
+      "agent_lines_removed": 119
+    }
+  ]
+}
