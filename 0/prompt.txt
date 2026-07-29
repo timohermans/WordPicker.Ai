@@ -1,15 +1,1 @@
-I'm getting the following error on production: fail: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler[52]
-      Message contains error: 'invalid_request', error_description: 'Invalid parameter: redirect_uri', error_uri: 'error_uri is null', status code '400'.
-fail: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler[52]
-      Message contains error: 'invalid_request', error_description: 'Invalid parameter: redirect_uri', error_uri: 'error_uri is null', status code '400'.
-fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[3]
-      An exception was thrown attempting to execute the error handler.
-      Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectProtocolException: Message contains error: 'invalid_request', error_description: 'Invalid parameter: redirect_uri', error_uri: 'error_uri is null'.
-         at Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.GetPushedAuthorizationRequestUri(HttpResponseMessage parResponseMessage)
-         at Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.PushAuthorizationRequest(OpenIdConnectMessage authorizeRequest, AuthenticationProperties properties, String parEndpoint)
-         at Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.HandleChallengeAsyncInternal(AuthenticationProperties properties)
-         at Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.HandleChallengeAsync(AuthenticationProperties properties)
-         at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.ChallengeAsync(AuthenticationProperties properties)
-         at Microsoft.AspNetCore.Authentication.AuthenticationService.ChallengeAsync(HttpContext context, String scheme, AuthenticationProperties properties)
-         at Microsoft.AspNetCore.Authentication.AuthenticationServiceImpl.ChallengeAsync(HttpContext context, String scheme, AuthenticationProperties properties)
-         at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.<>c__DisplayClass0_0.<<HandleAsync>g__Handle|0>d.MoveNext() Could it be because there's no https redirection?
+commit and push
