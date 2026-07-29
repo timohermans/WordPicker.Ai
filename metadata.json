@@ -5,19 +5,7 @@
   "branch": "main",
   "checkpoints_count": 13,
   "files_touched": [
-    "AGENTS.md",
-    "openspec/changes/add-keycloak-auth/.openspec.yaml",
-    "openspec/changes/add-keycloak-auth/design.md",
-    "openspec/changes/add-keycloak-auth/proposal.md",
-    "openspec/changes/add-keycloak-auth/specs/keycloak-auth/spec.md",
-    "openspec/changes/add-keycloak-auth/tasks.md",
-    "src/WordPicker.Web/Pages/Logout.cshtml",
-    "src/WordPicker.Web/Pages/Logout.cshtml.cs",
-    "src/WordPicker.Web/Pages/Shared/_Layout.cshtml",
-    "src/WordPicker.Web/Program.cs",
-    "src/WordPicker.Web/Properties/launchSettings.json",
-    "src/WordPicker.Web/WordPicker.Web.csproj",
-    "src/WordPicker.Web/appsettings.json"
+    "src/WordPicker.Web/Properties/launchSettings.json"
   ],
   "sessions": [
     {
