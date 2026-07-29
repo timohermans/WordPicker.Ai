@@ -63,3 +63,4 @@ dotnet test tests/WordPicker.Tests       # single project
 - **No additional projects** for functional code (only the web project and test project)
 - **No npm** — all client-side assets (Bootstrap, Alpine.js) loaded via CDN
 - **All client-side interactivity uses Alpine.js** — no vanilla JS for DOM manipulation, no jQuery, no Stimulus, no htmx
+- **Never use Third Party code of which the Nuget package hasn't been installed** — Ask for permission before installing and using
