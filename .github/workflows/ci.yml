@@ -27,6 +27,8 @@ jobs:
           POSTGRES_USER: wordpicker
           POSTGRES_PASSWORD: wordpicker
           POSTGRES_DB: wordpicker
+        ports:
+          - 5432:5432
         options: >-
           --health-cmd "pg_isready -U wordpicker"
           --health-interval 10s
@@ -54,7 +56,7 @@ jobs:
 
       - name: Apply migrations
         env:
-          ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=wordpicker;Username=wordpicker;Password=wordpicker"
+          ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=wordpicker;Username=wordpicker;Password=wordpicker"
         run: dotnet ef database update --project src/WordPicker.Web --no-build --configuration Release
 
       - name: Unit tests
