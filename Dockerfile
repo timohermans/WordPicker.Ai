@@ -7,7 +7,7 @@ RUN dotnet restore
 COPY . .
 RUN dotnet publish src/WordPicker.Web/WordPicker.Web.csproj -c Release -o /app
 
-FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine AS runtime
 WORKDIR /app
 EXPOSE 8080
 COPY --from=build /app .
